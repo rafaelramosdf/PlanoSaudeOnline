@@ -6,10 +6,49 @@ namespace PlanoSaudeOnline.Api.Models
 {
     public class OperadoraPlanoSaude : EntityBase
     {
-        [BsonElement("Nome")]
-        public string? Nome { get; set; }
+        [BsonElement("Ativo")]
+        public bool? Ativo { get; set; }
 
-        [BsonElement("UrlLogo")]
-        public string? UrlLogo { get; set; }
+        [BsonElement("RegistroAns")]
+        public string? RegistroAns { get; set; }
+
+        [BsonElement("Cnpj")]
+        public string? Cnpj { get; set; }
+
+        [BsonElement("RazaoSocial")]
+        public string? RazaoSocial { get; set; }
+
+        [BsonElement("NomeFantasia")]
+        public string? NomeFantasia { get; set; }
+
+        [BsonElement("Modalidade")]
+        public string? Modalidade { get; set; }
+
+        [BsonElement("Logradouro")]
+        public string? Logradouro { get; set; }
+
+        [BsonElement("Numero")]
+        public string? Numero { get; set; }
+
+        [BsonElement("Complemento")]
+        public string? Complemento { get; set; }
+
+        [BsonElement("Bairro")]
+        public string? Bairro { get; set; }
+
+        [BsonElement("Cidade")]
+        public string? Cidade { get; set; }
+
+        [BsonElement("Uf")]
+        public string? Uf { get; set; }
+
+        [BsonElement("Cep")]
+        public string? Cep { get; set; }
+
+        [BsonElement("RegiaoComercializacao")]
+        public string? RegiaoComercializacao { get; set; }
+
+        [BsonElement("DataRegistroAns")]
+        public string? DataRegistroAns { get; set; }
     }
 }
