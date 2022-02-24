@@ -18,10 +18,10 @@ builder.Services.Configure<DbPlanoSaudeOnlineConnectionString>(builder.Configura
 builder.Services.AddSingleton<IDbPlanoSaudeOnlineConnectionString>(sp => sp.GetRequiredService<IOptions<DbPlanoSaudeOnlineConnectionString>>().Value);
 
 // Repositories Injection
-builder.Services.AddScoped<ISeguradoraRepository, SeguradoraRepository>();
+builder.Services.AddScoped<IOperadoraPlanoSaudeRepository, OperadoraPlanoSaudeRepository>();
 
-// Services Injection
-builder.Services.AddScoped<ISeguradoraService, SeguradoraService>();
+// UseCases Injection
+builder.Services.AddScoped<ICrudOperadoraPlanoSaudeUseCase, CrudOperadoraPlanoSaudeUseCase>();
 
 var app = builder.Build();
 
