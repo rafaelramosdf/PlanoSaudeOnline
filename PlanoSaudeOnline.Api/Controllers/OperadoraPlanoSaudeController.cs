@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PlanoSaudeOnline.Api.Models;
-using PlanoSaudeOnline.Api.Services.Contracts;
+using PlanoSaudeOnline.Api.UseCases;
 
 namespace PlanoSaudeOnline.Api.Controllers;
 

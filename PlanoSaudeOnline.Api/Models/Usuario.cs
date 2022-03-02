@@ -20,5 +20,8 @@ namespace PlanoSaudeOnline.Api.Models
 
         [BsonElement("DataCadastro")]
         public DateTime? DataCadastro { get; set; }
+
+        [BsonElement("DataUltimaCotacao")]
+        public DateTime? DataUltimaCotacao { get; set; }
     }
 }

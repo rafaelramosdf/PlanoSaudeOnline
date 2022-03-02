@@ -49,6 +49,6 @@ namespace PlanoSaudeOnline.Api.Models
         public string? RegiaoComercializacao { get; set; }
 
         [BsonElement("DataRegistroAns")]
-        public string? DataRegistroAns { get; set; }
+        public DateTime? DataRegistroAns { get; set; }
     }
 }

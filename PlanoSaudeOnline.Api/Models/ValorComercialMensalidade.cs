@@ -18,7 +18,7 @@ namespace PlanoSaudeOnline.Api.Models
         [BsonElement("ValorMensalidade")]
         public decimal? ValorMensalidade { get; set; }
 
-        [BsonElement("DataHoraAtualizacao")]
-        public DateTime? DataHoraAtualizacao { get; set; }
+        [BsonElement("DataAtualizacao")]
+        public DateTime? DataAtualizacao { get; set; }
     }
 }

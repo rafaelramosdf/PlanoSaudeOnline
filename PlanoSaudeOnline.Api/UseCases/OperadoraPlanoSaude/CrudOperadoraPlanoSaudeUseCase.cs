@@ -1,15 +1,13 @@
 ﻿using PlanoSaudeOnline.Api.Models;
 using PlanoSaudeOnline.Api.Repositories.Contracts;
-using PlanoSaudeOnline.Api.Services.Contracts;
 using PlanoSaudeOnline.Api.UseCases.Base;
 
-namespace PlanoSaudeOnline.Api.Services
+namespace PlanoSaudeOnline.Api.UseCases;
+
+public class CrudOperadoraPlanoSaudeUseCase : CrudUseCase<OperadoraPlanoSaude, IOperadoraPlanoSaudeRepository>, ICrudOperadoraPlanoSaudeUseCase
 {
-    public class CrudOperadoraPlanoSaudeUseCase : CrudUseCase<OperadoraPlanoSaude, IOperadoraPlanoSaudeRepository>, ICrudOperadoraPlanoSaudeUseCase
+    public CrudOperadoraPlanoSaudeUseCase(IOperadoraPlanoSaudeRepository repository)
+        : base(repository)
     {
-        public CrudOperadoraPlanoSaudeUseCase(IOperadoraPlanoSaudeRepository repository)
-            : base(repository)
-        {
-        }
     }
 }

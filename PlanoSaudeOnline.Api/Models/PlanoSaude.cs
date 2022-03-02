@@ -46,12 +46,12 @@ namespace PlanoSaudeOnline.Api.Models
         public string? SituacaoPlano { get; set; }
 
         [BsonElement("DataSituacaoPlano")]
-        public string? DataSituacaoPlano { get; set; }
+        public DateTime? DataSituacaoPlano { get; set; }
 
         [BsonElement("DataRegistroPlano")]
-        public string? DataRegistroPlano { get; set; }
+        public DateTime? DataRegistroPlano { get; set; }
 
         [BsonElement("DataAtualizacao")]
-        public string? DataAtualizacao { get; set; }
+        public DateTime? DataAtualizacao { get; set; }
     }
 }

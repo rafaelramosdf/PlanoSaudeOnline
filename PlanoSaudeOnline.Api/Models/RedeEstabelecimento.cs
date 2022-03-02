@@ -43,10 +43,10 @@ namespace PlanoSaudeOnline.Api.Models
         public string? SiglaUf { get; set; }
 
         [BsonElement("DataInicioVinculo")]
-        public string? DataInicioVinculo { get; set; }
+        public DateTime? DataInicioVinculo { get; set; }
 
         [BsonElement("DataFinalVinculo")]
-        public string? DataFinalVinculo { get; set; }
+        public DateTime? DataFinalVinculo { get; set; }
 
         [BsonElement("NomeRegiao")]
         public string? NomeRegiao { get; set; }
