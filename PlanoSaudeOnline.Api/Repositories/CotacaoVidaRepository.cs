@@ -8,7 +8,7 @@ namespace PlanoSaudeOnline.Api.Repositories;
 public class CotacaoVidaRepository : RepositoryBase<CotacaoVida>, ICotacaoVidaRepository
 {
     public CotacaoVidaRepository(IDbPlanoSaudeOnlineConnectionString settings)
-        : base(settings)
+        : base("CotacaoVida", settings)
     {
 
     }

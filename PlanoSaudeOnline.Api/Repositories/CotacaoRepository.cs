@@ -8,7 +8,7 @@ namespace PlanoSaudeOnline.Api.Repositories;
 public class CotacaoRepository : RepositoryBase<Cotacao>, ICotacaoRepository
 {
     public CotacaoRepository(IDbPlanoSaudeOnlineConnectionString settings)
-        : base(settings)
+        : base("Cotacao", settings)
     {
 
     }

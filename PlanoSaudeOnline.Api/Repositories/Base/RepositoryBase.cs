@@ -10,7 +10,7 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
 {
     public readonly IMongoCollection<TEntity> EntityMongoCollection;
 
-    public RepositoryBase(IDbPlanoSaudeOnlineConnectionString settings)
+    public RepositoryBase(string collectionName, IDbPlanoSaudeOnlineConnectionString settings)
     {
         var mongoClientSettings = MongoClientSettings.FromUrl(new MongoUrl(settings.ConnectionString));
         mongoClientSettings.SslSettings.EnabledSslProtocols = System.Security.Authentication.SslProtocols.Tls12;
@@ -18,7 +18,7 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         var client = new MongoClient(mongoClientSettings);
         var database = client.GetDatabase(settings.DatabaseName);
 
-        EntityMongoCollection = database.GetCollection<TEntity>(name: nameof(TEntity));
+        EntityMongoCollection = database.GetCollection<TEntity>(name: collectionName);
     }
 
     public virtual List<TEntity> Get(int? page = 1, int? limit = 10) =>

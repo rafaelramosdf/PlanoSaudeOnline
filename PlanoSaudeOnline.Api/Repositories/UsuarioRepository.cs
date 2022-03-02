@@ -8,7 +8,7 @@ namespace PlanoSaudeOnline.Api.Repositories;
 public class UsuarioRepository : RepositoryBase<Usuario>, IUsuarioRepository
 {
     public UsuarioRepository(IDbPlanoSaudeOnlineConnectionString settings)
-        : base(settings)
+        : base("Usuario", settings)
     {
 
     }

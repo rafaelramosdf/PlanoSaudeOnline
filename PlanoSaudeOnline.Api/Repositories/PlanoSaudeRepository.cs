@@ -8,7 +8,7 @@ namespace PlanoSaudeOnline.Api.Repositories;
 public class PlanoSaudeRepository : RepositoryBase<PlanoSaude>, IPlanoSaudeRepository
 {
     public PlanoSaudeRepository(IDbPlanoSaudeOnlineConnectionString settings)
-        : base(settings)
+        : base("PlanoSaude", settings)
     {
 
     }

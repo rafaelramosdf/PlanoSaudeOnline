@@ -8,7 +8,7 @@ namespace PlanoSaudeOnline.Api.Repositories;
 public class FaixaEtariaRepository : RepositoryBase<FaixaEtaria>, IFaixaEtariaRepository
 {
     public FaixaEtariaRepository(IDbPlanoSaudeOnlineConnectionString settings)
-        : base(settings)
+        : base("FaixaEtaria", settings)
     {
 
     }

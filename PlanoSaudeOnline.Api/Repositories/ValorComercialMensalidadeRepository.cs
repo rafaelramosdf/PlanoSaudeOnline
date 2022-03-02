@@ -8,7 +8,7 @@ namespace PlanoSaudeOnline.Api.Repositories;
 public class ValorComercialMensalidadeRepository : RepositoryBase<ValorComercialMensalidade>, IValorComercialMensalidadeRepository
 {
     public ValorComercialMensalidadeRepository(IDbPlanoSaudeOnlineConnectionString settings)
-        : base(settings)
+        : base("ValorComercialMensalidade", settings)
     {
 
     }

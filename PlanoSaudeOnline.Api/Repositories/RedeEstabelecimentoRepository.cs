@@ -8,7 +8,7 @@ namespace PlanoSaudeOnline.Api.Repositories;
 public class RedeEstabelecimentoRepository : RepositoryBase<RedeEstabelecimento>, IRedeEstabelecimentoRepository
 {
     public RedeEstabelecimentoRepository(IDbPlanoSaudeOnlineConnectionString settings)
-        : base(settings)
+        : base("RedeEstabelecimento", settings)
     {
 
     }
