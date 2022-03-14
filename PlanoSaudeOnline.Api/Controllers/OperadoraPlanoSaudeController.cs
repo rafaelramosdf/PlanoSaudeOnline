@@ -8,13 +8,13 @@ namespace PlanoSaudeOnline.Api.Controllers;
 [Route("api/v1/OperadoraPlanoSaude")]
 public class OperadoraPlanoSaudeController : ControllerBase
 {
-    private readonly ILogger<OperadoraPlanoSaudeController> logger;
+    private readonly ILogger<OperadoraPlanoSaudeController> Logger;
     private readonly ICrudOperadoraPlanoSaudeUseCase CrudUseCase;
 
-    public OperadoraPlanoSaudeController(ILogger<OperadoraPlanoSaudeController> logger,
+    public OperadoraPlanoSaudeController(ILogger<OperadoraPlanoSaudeController> Logger,
         ICrudOperadoraPlanoSaudeUseCase CrudUseCase)
     {
-        this.logger = logger;
+        this.Logger = Logger;
         this.CrudUseCase = CrudUseCase;
     }
 
