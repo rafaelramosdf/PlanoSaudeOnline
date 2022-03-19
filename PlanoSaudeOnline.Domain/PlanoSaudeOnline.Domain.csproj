@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\CotacaoVida\" />
+    <Folder Include="Handlers\Cotacao\" />
+    <Folder Include="Handlers\FaixaEtaria\" />
+    <Folder Include="Handlers\PlanoSaude\" />
+    <Folder Include="Handlers\RedeEstabelecimento\" />
+    <Folder Include="Handlers\Usuario\" />
+    <Folder Include="Handlers\ValorComercialMensalidade\" />
+    <Folder Include="Enumerations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
+  </ItemGroup>
+
+</Project>

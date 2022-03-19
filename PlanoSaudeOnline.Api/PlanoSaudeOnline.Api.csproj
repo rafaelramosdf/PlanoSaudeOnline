@@ -8,8 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-    <PackageReference Include="MongoDB.Driver" Version="2.14.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlanoSaudeOnline.Domain\PlanoSaudeOnline.Domain.csproj" />
+    <ProjectReference Include="..\PlanoSaudeOnline.Infrastructure\PlanoSaudeOnline.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

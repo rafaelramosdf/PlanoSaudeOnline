@@ -1,8 +1,9 @@
+using MediatR;
 using Microsoft.Extensions.Options;
-using PlanoSaudeOnline.Api.Repositories;
-using PlanoSaudeOnline.Api.Repositories.Contracts;
-using PlanoSaudeOnline.Api.Settings;
-using PlanoSaudeOnline.Api.UseCases;
+using PlanoSaudeOnline.Domain.Contracts.Repositories;
+using PlanoSaudeOnline.Infrastructure.Repositories.MongoDB;
+using PlanoSaudeOnline.Infrastructure.Repositories.MongoDB.Base;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,17 +35,9 @@ builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IValorComercialMensalidadeRepository, ValorComercialMensalidadeRepository>();
 
 /// <summary>
-/// UseCases Injection
+/// MediatR Injection
 /// </summary>
-
-builder.Services.AddScoped<ICrudCotacaoUseCase, CrudCotacaoUseCase>();
-builder.Services.AddScoped<ICrudCotacaoVidaUseCase, CrudCotacaoVidaUseCase>();
-builder.Services.AddScoped<ICrudFaixaEtariaUseCase, CrudFaixaEtariaUseCase>();
-builder.Services.AddScoped<ICrudOperadoraPlanoSaudeUseCase, CrudOperadoraPlanoSaudeUseCase>();
-builder.Services.AddScoped<ICrudPlanoSaudeUseCase, CrudPlanoSaudeUseCase>();
-builder.Services.AddScoped<ICrudRedeEstabelecimentoUseCase, CrudRedeEstabelecimentoUseCase>();
-builder.Services.AddScoped<ICrudUsuarioUseCase, CrudUsuarioUseCase>();
-builder.Services.AddScoped<ICrudValorComercialMensalidadeUseCase, CrudValorComercialMensalidadeUseCase>();
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 /// <summary>
 /// App Configurations:
