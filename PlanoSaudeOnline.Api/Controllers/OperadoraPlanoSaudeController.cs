@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PlanoSaudeOnline.Domain.Entities;
 using PlanoSaudeOnline.Domain.Handlers.OperadoraPlanoSaude;
 
 namespace PlanoSaudeOnline.Api.Controllers;
@@ -8,61 +9,68 @@ namespace PlanoSaudeOnline.Api.Controllers;
 [Route("api/v1/OperadoraPlanoSaude")]
 public class OperadoraPlanoSaudeController : ControllerBase
 {
-    private readonly ILogger<OperadoraPlanoSaudeController> Logger;
+    private readonly IMediator mediator;
+    private readonly ILogger<OperadoraPlanoSaudeController> logger;
 
-    public OperadoraPlanoSaudeController(ILogger<OperadoraPlanoSaudeController> Logger)
+    public OperadoraPlanoSaudeController(
+        IMediator mediator,
+        ILogger<OperadoraPlanoSaudeController> logger)
     {
-        this.Logger = Logger;
+        this.mediator = mediator;
+        this.logger = logger;
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    public IActionResult Post([FromBody] IncluirOperadoraPlanoSaudeRequest request, [FromServices] IMediator mediator)
+    public async Task<IActionResult> Post([FromBody] IncluirOperadoraPlanoSaudeCommand request)
     {
-        var result = mediator.Send(request).Result;
-        return Created($"OperadoraPlanoSaude", result); //Created($"OperadoraPlanoSaude/{result.Id}", result);
+        var result = await mediator.Send(request);
+        return Created($"OperadoraPlanoSaude/{result?.Id}", result);
     }
 
-    //[HttpGet]
-    //[ProducesResponseType(typeof(IEnumerable<OperadoraPlanoSaude>), StatusCodes.Status200OK)]
-    //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    //public IActionResult Get([FromQuery] int? page, [FromQuery] int? limit)
-    //{
-    //    var result = CrudUseCase.Listar(page, limit);
-    //    return Ok(result);
-    //}
+    [HttpGet]
+    [ProducesResponseType(typeof(IEnumerable<OperadoraPlanoSaude>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Get([FromQuery] ConsultarOperadoraPlanoSaudeQuery query)
+    {
+        var result = await mediator.Send(query);
+        return Ok(result);
+    }
 
-    //[HttpGet("{id}")]
-    //[ProducesResponseType(typeof(OperadoraPlanoSaude), StatusCodes.Status200OK)]
-    //[ProducesResponseType(StatusCodes.Status404NotFound)]
-    //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    //public IActionResult Get(string id)
-    //{
-    //    var result = CrudUseCase.ListarPorId(id);
-    //    return Ok(result);
-    //}
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(OperadoraPlanoSaude), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Get(string id)
+    {
+        var query = new ConsultarOperadoraPlanoSaudeQuery(id);
 
-    //[HttpPut("{id}")]
-    //[ProducesResponseType(StatusCodes.Status204NoContent)]
-    //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    //public IActionResult Put(string id, [FromBody] OperadoraPlanoSaude model)
-    //{
-    //    CrudUseCase.Alterar(id, model);
-    //    return NoContent();
-    //}
+        var result = await mediator.Send(query);
+        return Ok(result);
+    }
 
-    //[HttpDelete("{id}")]
-    //[ProducesResponseType(StatusCodes.Status204NoContent)]
-    //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
-    //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
-    //public IActionResult Delete(string id)
-    //{
-    //    CrudUseCase.Excluir(id);
-    //    return NoContent();
-    //}
+    [HttpPut("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Put(string id, [FromBody] AlterarOperadoraPlanoSaudeCommand request)
+    {
+        await mediator.Send(request);
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var request = new ExcluirOperadoraPlanoSaudeCommand { Id = id };
+        await mediator.Send(request);
+        return NoContent();
+    }
 }

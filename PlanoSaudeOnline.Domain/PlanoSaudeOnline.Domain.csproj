@@ -12,9 +12,9 @@
     <Folder Include="Handlers\FaixaEtaria\" />
     <Folder Include="Handlers\PlanoSaude\" />
     <Folder Include="Handlers\RedeEstabelecimento\" />
+    <Folder Include="Enumerations\" />
     <Folder Include="Handlers\Usuario\" />
     <Folder Include="Handlers\ValorComercialMensalidade\" />
-    <Folder Include="Enumerations\" />
   </ItemGroup>
 
   <ItemGroup>

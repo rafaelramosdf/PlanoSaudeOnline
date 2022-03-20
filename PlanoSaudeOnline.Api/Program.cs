@@ -1,9 +1,9 @@
 using MediatR;
 using Microsoft.Extensions.Options;
 using PlanoSaudeOnline.Domain.Contracts.Repositories;
+using PlanoSaudeOnline.Domain.Handlers.OperadoraPlanoSaude;
 using PlanoSaudeOnline.Infrastructure.Repositories.MongoDB;
 using PlanoSaudeOnline.Infrastructure.Repositories.MongoDB.Base;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +37,10 @@ builder.Services.AddScoped<IValorComercialMensalidadeRepository, ValorComercialM
 /// <summary>
 /// MediatR Injection
 /// </summary>
-builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+builder.Services.AddMediatR(typeof(IncluirOperadoraPlanoSaudeCommand));
+builder.Services.AddMediatR(typeof(ConsultarOperadoraPlanoSaudeQuery));
+builder.Services.AddMediatR(typeof(AlterarOperadoraPlanoSaudeCommand));
+builder.Services.AddMediatR(typeof(ExcluirOperadoraPlanoSaudeCommand));
 
 /// <summary>
 /// App Configurations:
