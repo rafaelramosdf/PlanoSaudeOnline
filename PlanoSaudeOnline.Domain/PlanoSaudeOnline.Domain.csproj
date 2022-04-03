@@ -7,19 +7,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\CotacaoVida\" />
-    <Folder Include="Handlers\Cotacao\" />
-    <Folder Include="Handlers\FaixaEtaria\" />
-    <Folder Include="Handlers\PlanoSaude\" />
-    <Folder Include="Handlers\RedeEstabelecimento\" />
-    <Folder Include="Enumerations\" />
-    <Folder Include="Handlers\Usuario\" />
-    <Folder Include="Handlers\ValorComercialMensalidade\" />
+    <Folder Include="CotacaoVida\Handlers\Contracts\" />
+    <Folder Include="CotacaoVida\Handlers\Requests\" />
+    <Folder Include="CotacaoVida\Handlers\Responses\" />
+    <Folder Include="Cotacao\Handlers\Contracts\" />
+    <Folder Include="Cotacao\Handlers\Responses\" />
+    <Folder Include="Cotacao\Handlers\Requests\" />
+    <Folder Include="FaixaEtaria\Handlers\Contracts\" />
+    <Folder Include="FaixaEtaria\Handlers\Requests\" />
+    <Folder Include="FaixaEtaria\Handlers\Responses\" />
+    <Folder Include="PlanoSaude\Handlers\Contracts\" />
+    <Folder Include="PlanoSaude\Handlers\Requests\" />
+    <Folder Include="PlanoSaude\Handlers\Responses\" />
+    <Folder Include="RedeEstabelecimento\Handlers\Contracts\" />
+    <Folder Include="RedeEstabelecimento\Handlers\Requests\" />
+    <Folder Include="RedeEstabelecimento\Handlers\Responses\" />
+    <Folder Include="Usuario\Handlers\Contracts\" />
+    <Folder Include="Usuario\Handlers\Requests\" />
+    <Folder Include="Usuario\Handlers\Responses\" />
+    <Folder Include="ValorComercialMensalidade\Handlers\Contracts\" />
+    <Folder Include="ValorComercialMensalidade\Handlers\Requests\" />
+    <Folder Include="ValorComercialMensalidade\Handlers\Responses\" />
+    <Folder Include="_Shared\Enumerations\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="10.0.1" />
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
     <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
   </ItemGroup>
 

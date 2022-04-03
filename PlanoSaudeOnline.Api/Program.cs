@@ -1,9 +1,4 @@
-using MediatR;
-using Microsoft.Extensions.Options;
-using PlanoSaudeOnline.Domain.Contracts.Repositories;
-using PlanoSaudeOnline.Domain.Handlers.OperadoraPlanoSaude;
-using PlanoSaudeOnline.Infrastructure.Repositories.MongoDB;
-using PlanoSaudeOnline.Infrastructure.Repositories.MongoDB.Base;
+using PlanoSaudeOnline.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,34 +8,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddVersionedApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV";
+    options.SubstituteApiVersionInUrl = true;
+});
+
+builder.Services.AddApiVersioning(o => o.ReportApiVersions = true);
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
-builder.Services.Configure<DbPlanoSaudeOnlineConnectionString>(builder.Configuration.GetSection(nameof(DbPlanoSaudeOnlineConnectionString)));
-
-builder.Services.AddSingleton<IDbPlanoSaudeOnlineConnectionString>(sp => sp.GetRequiredService<IOptions<DbPlanoSaudeOnlineConnectionString>>().Value);
-
-/// <summary>
-/// Repositories Injection
-/// </summary>
-
-builder.Services.AddScoped<ICotacaoRepository, CotacaoRepository>();
-builder.Services.AddScoped<ICotacaoVidaRepository, CotacaoVidaRepository>();
-builder.Services.AddScoped<IFaixaEtariaRepository, FaixaEtariaRepository>();
-builder.Services.AddScoped<IOperadoraPlanoSaudeRepository, OperadoraPlanoSaudeRepository>();
-builder.Services.AddScoped<IPlanoSaudeRepository, PlanoSaudeRepository>();
-builder.Services.AddScoped<IRedeEstabelecimentoRepository, RedeEstabelecimentoRepository>();
-builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
-builder.Services.AddScoped<IValorComercialMensalidadeRepository, ValorComercialMensalidadeRepository>();
-
-/// <summary>
-/// MediatR Injection
-/// </summary>
-builder.Services.AddMediatR(typeof(IncluirOperadoraPlanoSaudeCommand));
-builder.Services.AddMediatR(typeof(ConsultarOperadoraPlanoSaudeQuery));
-builder.Services.AddMediatR(typeof(AlterarOperadoraPlanoSaudeCommand));
-builder.Services.AddMediatR(typeof(ExcluirOperadoraPlanoSaudeCommand));
+builder.AddDependencies();
 
 /// <summary>
 /// App Configurations:
@@ -50,9 +30,11 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // Implementar configurações específicas para Dev
 }
+
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

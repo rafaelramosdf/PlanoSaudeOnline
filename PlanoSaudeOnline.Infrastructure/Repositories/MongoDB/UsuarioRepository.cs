@@ -1,5 +1,5 @@
-﻿using PlanoSaudeOnline.Domain.Contracts.Repositories;
-using PlanoSaudeOnline.Domain.Entities;
+﻿using PlanoSaudeOnline.Domain.Usuario.Entities;
+using PlanoSaudeOnline.Domain.Usuario.Repositories;
 using PlanoSaudeOnline.Infrastructure.Repositories.MongoDB.Base;
 
 namespace PlanoSaudeOnline.Infrastructure.Repositories.MongoDB;

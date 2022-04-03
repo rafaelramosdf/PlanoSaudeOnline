@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
-using PlanoSaudeOnline.Domain.Contracts.Repositories;
-using PlanoSaudeOnline.Domain.Entities.Base;
+using PlanoSaudeOnline.Domain._Shared.Base;
+using PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
 using System.Linq.Expressions;
 
 namespace PlanoSaudeOnline.Infrastructure.Repositories.MongoDB.Base;
