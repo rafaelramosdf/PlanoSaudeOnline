@@ -1,53 +1,69 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base;
 
 namespace PlanoSaudeOnline.Domain.RedeEstabelecimento.Entities;
 
 public class RedeEstabelecimento : EntityBase
 {
-    [BsonElement("IdRede")]
-    public string? IdRede { get; set; }
+    public RedeEstabelecimento(string idRede, 
+        string idEstabelecimentoSaude, 
+        string nomeEstabelecimentoSaude, 
+        string? cnpjEstabelecimentoSaude, 
+        string? classificacaoEstabelecimentoSaude, 
+        bool? possuiAtendimentoUrgenciaEmergencia, 
+        string idPlano, 
+        bool? codigoPlano, 
+        bool? registroAnsOperadora, 
+        string? codigoMunicipio, 
+        string? nomeMunicipio, 
+        string? siglaUf, 
+        DateTime? dataInicioVinculo, 
+        DateTime? dataFinalVinculo, 
+        string? nomeRegiao)
+    {
+        IdRede = idRede;
+        IdEstabelecimentoSaude = idEstabelecimentoSaude;
+        NomeEstabelecimentoSaude = nomeEstabelecimentoSaude;
+        CnpjEstabelecimentoSaude = cnpjEstabelecimentoSaude;
+        ClassificacaoEstabelecimentoSaude = classificacaoEstabelecimentoSaude;
+        PossuiAtendimentoUrgenciaEmergencia = possuiAtendimentoUrgenciaEmergencia;
+        IdPlano = idPlano;
+        CodigoPlano = codigoPlano;
+        RegistroAnsOperadora = registroAnsOperadora;
+        CodigoMunicipio = codigoMunicipio;
+        NomeMunicipio = nomeMunicipio;
+        SiglaUf = siglaUf;
+        DataInicioVinculo = dataInicioVinculo;
+        DataFinalVinculo = dataFinalVinculo;
+        NomeRegiao = nomeRegiao;
+    }
 
-    [BsonElement("IdEstabelecimentoSaude")]
-    public string? IdEstabelecimentoSaude { get; set; }
+    public string IdRede { get; set; }
 
-    [BsonElement("CnpjEstabelecimentoSaude")]
+    public string IdEstabelecimentoSaude { get; set; }
+
+    public string NomeEstabelecimentoSaude { get; set; }
+
     public string? CnpjEstabelecimentoSaude { get; set; }
 
-    [BsonElement("NomeEstabelecimentoSaude")]
-    public string? NomeEstabelecimentoSaude { get; set; }
-
-    [BsonElement("ClassificacaoEstabelecimentoSaude")]
     public string? ClassificacaoEstabelecimentoSaude { get; set; }
 
-    [BsonElement("PossuiAtendimentoUrgenciaEmergencia")]
     public bool? PossuiAtendimentoUrgenciaEmergencia { get; set; }
 
-    [BsonElement("IdPlano")]
-    public string? IdPlano { get; set; }
+    public string IdPlano { get; set; }
 
-    [BsonElement("CodigoPlano")]
     public bool? CodigoPlano { get; set; }
 
-    [BsonElement("RegistroAnsOperadora")]
     public bool? RegistroAnsOperadora { get; set; }
 
-    [BsonElement("CodigoMunicipio")]
     public string? CodigoMunicipio { get; set; }
 
-    [BsonElement("NomeMunicipio")]
     public string? NomeMunicipio { get; set; }
 
-    [BsonElement("SiglaUf")]
     public string? SiglaUf { get; set; }
 
-    [BsonElement("DataInicioVinculo")]
     public DateTime? DataInicioVinculo { get; set; }
 
-    [BsonElement("DataFinalVinculo")]
     public DateTime? DataFinalVinculo { get; set; }
 
-    [BsonElement("NomeRegiao")]
     public string? NomeRegiao { get; set; }
 }

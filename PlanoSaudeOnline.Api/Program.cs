@@ -1,4 +1,5 @@
 using PlanoSaudeOnline.Api.Extensions;
+using PlanoSaudeOnline.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,11 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseExceptionHandler(new ExceptionHandlerOptions
+{
+    ExceptionHandler = new ErrorHandlerMiddleware(app.Environment).Invoke
+});
 
 app.MapControllers();
 

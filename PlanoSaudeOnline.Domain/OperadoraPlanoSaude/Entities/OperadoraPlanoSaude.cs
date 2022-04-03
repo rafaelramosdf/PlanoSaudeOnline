@@ -1,53 +1,69 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base;
 
 namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Entities;
 
 public class OperadoraPlanoSaude : EntityBase
 {
-    [BsonElement("Ativo")]
-    public bool? Ativo { get; set; }
+    public OperadoraPlanoSaude(bool ativo, 
+        string registroAns, 
+        string cnpj, 
+        string razaoSocial, 
+        string? nomeFantasia, 
+        string? modalidade, 
+        string? logradouro, 
+        string? numero, 
+        string? complemento, 
+        string? bairro, 
+        string? cidade, 
+        string? uf, 
+        string? cep, 
+        string? regiaoComercializacao, 
+        DateTime? dataRegistroAns)
+    {
+        Ativo = ativo;
+        RegistroAns = registroAns;
+        Cnpj = cnpj;
+        RazaoSocial = razaoSocial;
+        NomeFantasia = nomeFantasia;
+        Modalidade = modalidade;
+        Logradouro = logradouro;
+        Numero = numero;
+        Complemento = complemento;
+        Bairro = bairro;
+        Cidade = cidade;
+        Uf = uf;
+        Cep = cep;
+        RegiaoComercializacao = regiaoComercializacao;
+        DataRegistroAns = dataRegistroAns;
+    }
 
-    [BsonElement("RegistroAns")]
-    public string? RegistroAns { get; set; }
+    public bool Ativo { get; set; }
 
-    [BsonElement("Cnpj")]
-    public string? Cnpj { get; set; }
+    public string RegistroAns { get; set; }
 
-    [BsonElement("RazaoSocial")]
-    public string? RazaoSocial { get; set; }
+    public string Cnpj { get; set; }
 
-    [BsonElement("NomeFantasia")]
+    public string RazaoSocial { get; set; }
+
     public string? NomeFantasia { get; set; }
 
-    [BsonElement("Modalidade")]
     public string? Modalidade { get; set; }
 
-    [BsonElement("Logradouro")]
     public string? Logradouro { get; set; }
 
-    [BsonElement("Numero")]
     public string? Numero { get; set; }
 
-    [BsonElement("Complemento")]
     public string? Complemento { get; set; }
 
-    [BsonElement("Bairro")]
     public string? Bairro { get; set; }
 
-    [BsonElement("Cidade")]
     public string? Cidade { get; set; }
 
-    [BsonElement("Uf")]
     public string? Uf { get; set; }
 
-    [BsonElement("Cep")]
     public string? Cep { get; set; }
 
-    [BsonElement("RegiaoComercializacao")]
     public string? RegiaoComercializacao { get; set; }
 
-    [BsonElement("DataRegistroAns")]
     public DateTime? DataRegistroAns { get; set; }
 }

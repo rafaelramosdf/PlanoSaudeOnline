@@ -1,20 +1,22 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base;
 
 namespace PlanoSaudeOnline.Domain.Cotacao.Entities;
 
 public class Cotacao : EntityBase
 {
-    [BsonElement("IdCliente")]
-    public string? IdCliente { get; set; }
+    public Cotacao(string idCliente, string idPlanoSaude, decimal valorMensalidadeCotacao, DateTime dataHora)
+    {
+        IdCliente = idCliente;
+        IdPlanoSaude = idPlanoSaude;
+        ValorMensalidadeCotacao = valorMensalidadeCotacao;
+        DataHora = dataHora;
+    }
 
-    [BsonElement("IdPlanoSaude")]
-    public string? IdPlanoSaude { get; set; }
+    public string IdCliente { get; set; }
 
-    [BsonElement("ValorMensalidadeCotacao")]
-    public decimal? ValorMensalidadeCotacao { get; set; }
+    public string IdPlanoSaude { get; set; }
 
-    [BsonElement("DataHora")]
-    public DateTime? DataHora { get; set; }
+    public decimal ValorMensalidadeCotacao { get; set; }
+
+    public DateTime DataHora { get; set; }
 }

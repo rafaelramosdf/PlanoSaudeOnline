@@ -1,56 +1,73 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base;
 
 namespace PlanoSaudeOnline.Domain.PlanoSaude.Entities;
 
 public class PlanoSaude : EntityBase
 {
-    [BsonElement("IdPlano")]
-    public string? IdPlano { get; set; }
+    public PlanoSaude(string idPlano, 
+        string nomePlano, 
+        string? codigoPlano, 
+        string? registroAnsOperadora, 
+        string? tipoContratacao, 
+        string? segmentoAssistencial, 
+        bool? possuiCoberturaObstetricia, 
+        bool? possuiCoberturaOdontologico, 
+        bool? somenteOdentologico, 
+        string? abrangenciaCobertura, 
+        string? acomodacaoHospitalar, 
+        string? fatorModerador, 
+        string? situacaoPlano, 
+        DateTime? dataSituacaoPlano, 
+        DateTime? dataRegistroPlano, 
+        DateTime? dataAtualizacao)
+    {
+        IdPlano = idPlano;
+        NomePlano = nomePlano;
+        CodigoPlano = codigoPlano;
+        RegistroAnsOperadora = registroAnsOperadora;
+        TipoContratacao = tipoContratacao;
+        SegmentoAssistencial = segmentoAssistencial;
+        PossuiCoberturaObstetricia = possuiCoberturaObstetricia;
+        PossuiCoberturaOdontologico = possuiCoberturaOdontologico;
+        SomenteOdentologico = somenteOdentologico;
+        AbrangenciaCobertura = abrangenciaCobertura;
+        AcomodacaoHospitalar = acomodacaoHospitalar;
+        FatorModerador = fatorModerador;
+        SituacaoPlano = situacaoPlano;
+        DataSituacaoPlano = dataSituacaoPlano;
+        DataRegistroPlano = dataRegistroPlano;
+        DataAtualizacao = dataAtualizacao;
+    }
 
-    [BsonElement("CodigoPlano")]
+    public string IdPlano { get; set; }
+
+    public string NomePlano { get; set; }
+
     public string? CodigoPlano { get; set; }
 
-    [BsonElement("NomePlano")]
-    public string? NomePlano { get; set; }
-
-    [BsonElement("RegistroAnsOperadora")]
     public string? RegistroAnsOperadora { get; set; }
 
-    [BsonElement("TipoContratacao")]
     public string? TipoContratacao { get; set; }
 
-    [BsonElement("SegmentoAssistencial")]
     public string? SegmentoAssistencial { get; set; }
 
-    [BsonElement("PossuiCoberturaObstetricia")]
     public bool? PossuiCoberturaObstetricia { get; set; }
 
-    [BsonElement("PossuiCoberturaOdontologico")]
     public bool? PossuiCoberturaOdontologico { get; set; }
 
-    [BsonElement("SomenteOdentologico")]
     public bool? SomenteOdentologico { get; set; }
 
-    [BsonElement("AbrangenciaCobertura")]
     public string? AbrangenciaCobertura { get; set; }
 
-    [BsonElement("AcomodacaoHospitalar")]
     public string? AcomodacaoHospitalar { get; set; }
 
-    [BsonElement("FatorModerador")]
     public string? FatorModerador { get; set; }
 
-    [BsonElement("SituacaoPlano")]
     public string? SituacaoPlano { get; set; }
 
-    [BsonElement("DataSituacaoPlano")]
     public DateTime? DataSituacaoPlano { get; set; }
 
-    [BsonElement("DataRegistroPlano")]
     public DateTime? DataRegistroPlano { get; set; }
 
-    [BsonElement("DataAtualizacao")]
     public DateTime? DataAtualizacao { get; set; }
 }

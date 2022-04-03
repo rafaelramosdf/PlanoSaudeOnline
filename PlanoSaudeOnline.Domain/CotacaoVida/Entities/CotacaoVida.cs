@@ -6,18 +6,22 @@ namespace PlanoSaudeOnline.Domain.CotacaoVida.Entities;
 
 public class CotacaoVida : EntityBase
 {
-    [BsonElement("IdCotacao")]
-    public string? IdCotacao { get; set; }
+    public CotacaoVida(string idCotacao, string idFaixaEtaria, int quantidade, decimal valorVida)
+    {
+        IdCotacao = idCotacao;
+        IdFaixaEtaria = idFaixaEtaria;
+        Quantidade = quantidade;
+        ValorVida = valorVida;
+    }
 
-    [BsonElement("IdFaixaEtaria")]
-    public string? IdFaixaEtaria { get; set; }
+    public string IdCotacao { get; set; }
 
-    [BsonElement("Quantidade")]
-    public int? Quantidade { get; set; }
+    public string IdFaixaEtaria { get; set; }
 
-    [BsonElement("ValorVida")]
-    public decimal? ValorVida { get; set; }
+    public int Quantidade { get; set; }
 
-    [BsonElement("ValorTotal")]
-    public decimal? ValorTotal => Quantidade * ValorVida;
+    public decimal ValorVida { get; set; }
+
+    [BsonIgnore]
+    public decimal ValorTotal => Quantidade * ValorVida;
 }

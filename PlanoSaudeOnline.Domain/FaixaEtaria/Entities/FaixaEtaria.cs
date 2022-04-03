@@ -1,20 +1,22 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base;
 
 namespace PlanoSaudeOnline.Domain.FaixaEtaria.Entities;
 
 public class FaixaEtaria : EntityBase
 {
-    [BsonElement("CodigoFaixaEtaria")]
-    public string? CodigoFaixaEtaria { get; set; }
+    public FaixaEtaria(string codigoFaixaEtaria, int idadeMinima, int idadeMaxima, string? descricao)
+    {
+        CodigoFaixaEtaria = codigoFaixaEtaria;
+        IdadeMinima = idadeMinima;
+        IdadeMaxima = idadeMaxima;
+        Descricao = descricao;
+    }
 
-    [BsonElement("IdadeMinima")]
-    public int? IdadeMinima { get; set; }
+    public string CodigoFaixaEtaria { get; set; }
 
-    [BsonElement("IdadeMaxima")]
-    public int? IdadeMaxima { get; set; }
+    public int IdadeMinima { get; set; }
 
-    [BsonElement("Descricao")]
+    public int IdadeMaxima { get; set; }
+
     public string? Descricao { get; set; }
 }

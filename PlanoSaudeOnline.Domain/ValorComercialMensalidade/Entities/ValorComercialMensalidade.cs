@@ -1,23 +1,29 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base;
 
 namespace PlanoSaudeOnline.Domain.ValorComercialMensalidade.Entities;
 
 public class ValorComercialMensalidade : EntityBase
 {
-    [BsonElement("IdFaixaEtaria")]
-    public string? IdFaixaEtaria { get; set; }
+    public ValorComercialMensalidade(string idFaixaEtaria, 
+        string? codigoFaixaEtaria, 
+        string idPlanoSaude, 
+        decimal? valorMensalidade, 
+        DateTime? dataAtualizacao)
+    {
+        IdFaixaEtaria = idFaixaEtaria;
+        CodigoFaixaEtaria = codigoFaixaEtaria;
+        IdPlanoSaude = idPlanoSaude;
+        ValorMensalidade = valorMensalidade;
+        DataAtualizacao = dataAtualizacao;
+    }
 
-    [BsonElement("CodigoFaixaEtaria")]
+    public string IdFaixaEtaria { get; set; }
+
     public string? CodigoFaixaEtaria { get; set; }
 
-    [BsonElement("IdPlanoSaude")]
-    public string? IdPlanoSaude { get; set; }
+    public string IdPlanoSaude { get; set; }
 
-    [BsonElement("ValorMensalidade")]
     public decimal? ValorMensalidade { get; set; }
 
-    [BsonElement("DataAtualizacao")]
     public DateTime? DataAtualizacao { get; set; }
 }
