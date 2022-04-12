@@ -1,10 +1,10 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 using System.Linq.Expressions;
 
 namespace PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
 
 public interface IRepositoryBase<TEntity>
-    where TEntity : EntityBase
+    where TEntity : Entity
 {
     List<TEntity> Get(int? page, int? limit);
     List<TEntity> Get(Expression<Func<TEntity, bool>> query, int? page = 1, int? limit = 10);

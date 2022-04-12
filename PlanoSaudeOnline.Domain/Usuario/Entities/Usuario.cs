@@ -1,8 +1,8 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 
 namespace PlanoSaudeOnline.Domain.Usuario.Entities;
 
-public class Usuario : EntityBase
+public class Usuario : Entity
 {
     public Usuario(string nome, 
         string? telefone, 

@@ -3,6 +3,7 @@ using PlanoSaudeOnline.Api.Controllers.v1.Base;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Entities;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Requests;
+using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Responses;
 
 namespace PlanoSaudeOnline.Api.Controllers.v1;
 
@@ -25,15 +26,15 @@ public class OperadoraPlanoSaudeController : BaseController
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<OperadoraPlanoSaude>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IEnumerable<OperadoraPlanoSaudeResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> Get([FromQuery] ConsultarOperadoraPlanoSaudeRequest query, 
         [FromServices] IConsultarOperadoraPlanoSaudeHandler handler)
     {
         return await handler.HandleAsync(query);
     }
 
-    [HttpGet("{id}")]
-    [ProducesResponseType(typeof(OperadoraPlanoSaude), StatusCodes.Status200OK)]
+    [HttpGet("{id}", Name = nameof(OperadoraPlanoSaude))]
+    [ProducesResponseType(typeof(OperadoraPlanoSaudeResponse), StatusCodes.Status200OK)]
     public async Task<IActionResult> Get(string id, 
         [FromServices] IBuscarOperadoraPlanoSaudePorIdHandler handler)
     {

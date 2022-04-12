@@ -1,14 +1,20 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
+using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Entities.Validations;
+using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Requests;
 
 namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Entities;
 
-public class OperadoraPlanoSaude : EntityBase
+public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
 {
+    public OperadoraPlanoSaude()
+    {
+    }
+
     public OperadoraPlanoSaude(bool ativo, 
         string registroAns, 
         string cnpj, 
         string razaoSocial, 
-        string? nomeFantasia, 
+        string nomeFantasia, 
         string? modalidade, 
         string? logradouro, 
         string? numero, 
@@ -37,6 +43,45 @@ public class OperadoraPlanoSaude : EntityBase
         DataRegistroAns = dataRegistroAns;
     }
 
+    public OperadoraPlanoSaude(IncluirOperadoraPlanoSaudeRequest incluirOperadoraPlanoSaudeRequest)
+    {
+        Ativo = incluirOperadoraPlanoSaudeRequest.Ativo;
+        RegistroAns = incluirOperadoraPlanoSaudeRequest.RegistroAns;
+        Cnpj = incluirOperadoraPlanoSaudeRequest.Cnpj;
+        RazaoSocial = incluirOperadoraPlanoSaudeRequest.RazaoSocial;
+        NomeFantasia = incluirOperadoraPlanoSaudeRequest.NomeFantasia;
+        Modalidade = incluirOperadoraPlanoSaudeRequest.Modalidade;
+        Logradouro = incluirOperadoraPlanoSaudeRequest.Logradouro;
+        Numero = incluirOperadoraPlanoSaudeRequest.Numero;
+        Complemento = incluirOperadoraPlanoSaudeRequest.Complemento;
+        Bairro = incluirOperadoraPlanoSaudeRequest.Bairro;
+        Cidade = incluirOperadoraPlanoSaudeRequest.Cidade;
+        Uf = incluirOperadoraPlanoSaudeRequest.Uf;
+        Cep = incluirOperadoraPlanoSaudeRequest.Cep;
+        RegiaoComercializacao = incluirOperadoraPlanoSaudeRequest.RegiaoComercializacao;
+        DataRegistroAns = incluirOperadoraPlanoSaudeRequest.DataRegistroAns;
+    }
+
+    public OperadoraPlanoSaude(AlterarOperadoraPlanoSaudeRequest alterarOperadoraPlanoSaudeRequest)
+    {
+        Id = alterarOperadoraPlanoSaudeRequest.Id;
+        Ativo = alterarOperadoraPlanoSaudeRequest.Ativo;
+        RegistroAns = alterarOperadoraPlanoSaudeRequest.RegistroAns;
+        Cnpj = alterarOperadoraPlanoSaudeRequest.Cnpj;
+        RazaoSocial = alterarOperadoraPlanoSaudeRequest.RazaoSocial;
+        NomeFantasia = alterarOperadoraPlanoSaudeRequest.NomeFantasia;
+        Modalidade = alterarOperadoraPlanoSaudeRequest.Modalidade;
+        Logradouro = alterarOperadoraPlanoSaudeRequest.Logradouro;
+        Numero = alterarOperadoraPlanoSaudeRequest.Numero;
+        Complemento = alterarOperadoraPlanoSaudeRequest.Complemento;
+        Bairro = alterarOperadoraPlanoSaudeRequest.Bairro;
+        Cidade = alterarOperadoraPlanoSaudeRequest.Cidade;
+        Uf = alterarOperadoraPlanoSaudeRequest.Uf;
+        Cep = alterarOperadoraPlanoSaudeRequest.Cep;
+        RegiaoComercializacao = alterarOperadoraPlanoSaudeRequest.RegiaoComercializacao;
+        DataRegistroAns = alterarOperadoraPlanoSaudeRequest.DataRegistroAns;
+    }
+
     public bool Ativo { get; set; }
 
     public string RegistroAns { get; set; }
@@ -45,7 +90,7 @@ public class OperadoraPlanoSaude : EntityBase
 
     public string RazaoSocial { get; set; }
 
-    public string? NomeFantasia { get; set; }
+    public string NomeFantasia { get; set; }
 
     public string? Modalidade { get; set; }
 

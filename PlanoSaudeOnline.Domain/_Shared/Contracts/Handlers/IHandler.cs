@@ -7,7 +7,7 @@ public interface IHandler
     IActionResult Handle();
 }
 
-public interface IHandler<TRequest>
+public interface IHandler<TRequest> 
 {
     IActionResult Handle(TRequest request);
 }

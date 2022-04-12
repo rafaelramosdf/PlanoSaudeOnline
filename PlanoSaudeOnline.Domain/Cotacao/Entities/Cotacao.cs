@@ -1,8 +1,8 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 
 namespace PlanoSaudeOnline.Domain.Cotacao.Entities;
 
-public class Cotacao : EntityBase
+public class Cotacao : Entity
 {
     public Cotacao(string idCliente, string idPlanoSaude, decimal valorMensalidadeCotacao, DateTime dataHora)
     {

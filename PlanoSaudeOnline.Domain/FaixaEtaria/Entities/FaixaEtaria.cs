@@ -1,8 +1,8 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 
 namespace PlanoSaudeOnline.Domain.FaixaEtaria.Entities;
 
-public class FaixaEtaria : EntityBase
+public class FaixaEtaria : Entity
 {
     public FaixaEtaria(string codigoFaixaEtaria, int idadeMinima, int idadeMaxima, string? descricao)
     {

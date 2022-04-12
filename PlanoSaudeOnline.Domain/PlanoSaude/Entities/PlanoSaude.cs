@@ -1,8 +1,8 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 
 namespace PlanoSaudeOnline.Domain.PlanoSaude.Entities;
 
-public class PlanoSaude : EntityBase
+public class PlanoSaude : Entity
 {
     public PlanoSaude(string idPlano, 
         string nomePlano, 

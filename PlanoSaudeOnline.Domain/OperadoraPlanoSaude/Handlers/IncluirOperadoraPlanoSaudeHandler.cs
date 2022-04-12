@@ -16,7 +16,16 @@ public class IncluirOperadoraPlanoSaudeHandler : IIncluirOperadoraPlanoSaudeHand
 
     public async Task<IActionResult> HandleAsync(IncluirOperadoraPlanoSaudeRequest request)
     {
-        Console.WriteLine("Handle IncluirOperadoraPlanoSaudeCommandHandler executed!");
-        return new CreatedAtRouteResult("rota_do_recurso_criado", request);
+        var operadoraPlanoSaude = new Entities.OperadoraPlanoSaude(request);
+
+        if (!operadoraPlanoSaude.IsValid)
+            return new BadRequestObjectResult(operadoraPlanoSaude.Notifications);
+
+        operadoraPlanoSaude = operadoraPlanoSaudeRepository.Create(operadoraPlanoSaude);
+
+        return new CreatedAtRouteResult(
+            nameof(operadoraPlanoSaude), 
+            new { id = operadoraPlanoSaude.Id }, 
+            operadoraPlanoSaude);
     }
 }

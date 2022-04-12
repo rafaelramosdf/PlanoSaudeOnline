@@ -1,10 +1,10 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using PlanoSaudeOnline.Domain._Shared.Base;
+using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 
 namespace PlanoSaudeOnline.Domain.CotacaoVida.Entities;
 
-public class CotacaoVida : EntityBase
+public class CotacaoVida : Entity
 {
     public CotacaoVida(string idCotacao, string idFaixaEtaria, int quantidade, decimal valorVida)
     {

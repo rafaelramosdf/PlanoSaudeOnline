@@ -1,8 +1,8 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Base;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 
 namespace PlanoSaudeOnline.Domain.ValorComercialMensalidade.Entities;
 
-public class ValorComercialMensalidade : EntityBase
+public class ValorComercialMensalidade : Entity
 {
     public ValorComercialMensalidade(string idFaixaEtaria, 
         string? codigoFaixaEtaria, 

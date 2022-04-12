@@ -1,12 +1,12 @@
 ﻿using MongoDB.Driver;
-using PlanoSaudeOnline.Domain._Shared.Base;
+using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 using PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
 using System.Linq.Expressions;
 
 namespace PlanoSaudeOnline.Infrastructure.Repositories.MongoDB.Base;
 
 public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
-    where TEntity : EntityBase
+    where TEntity : Entity
 {
     public readonly IMongoCollection<TEntity> EntityMongoCollection;
 
@@ -21,11 +21,17 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         EntityMongoCollection = database.GetCollection<TEntity>(name: collectionName);
     }
 
-    public virtual List<TEntity> Get(int? page = 1, int? limit = 10) =>
-        EntityMongoCollection.Find(entity => true).Skip((page - 1) * limit).Limit(limit).ToList();
+    public virtual List<TEntity> Get(int? page = 1, int? limit = 10)
+    {
+        limit = limit > 100 ? 100 : limit;
+        return EntityMongoCollection.Find(entity => true).Skip((page - 1) * limit).Limit(limit).ToList();
+    }
 
-    public virtual List<TEntity> Get(Expression<Func<TEntity, bool>> query, int? page = 1, int? limit = 10) =>
-        EntityMongoCollection.Find(query).Skip((page - 1) * limit).Limit(limit).ToList();
+    public virtual List<TEntity> Get(Expression<Func<TEntity, bool>> query, int? page = 1, int? limit = 10)
+    {
+        limit = limit > 100 ? 100 : limit;
+        return EntityMongoCollection.Find(query).Skip((page - 1) * limit).Limit(limit).ToList();
+    }
 
     public virtual TEntity Get(string id) =>
         EntityMongoCollection.Find(s => s.Id == id).FirstOrDefault();

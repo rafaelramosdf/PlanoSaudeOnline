@@ -16,7 +16,11 @@ public class ConsultarOperadoraPlanoSaudeHandler : IConsultarOperadoraPlanoSaude
 
     public async Task<IActionResult> HandleAsync(ConsultarOperadoraPlanoSaudeRequest request)
     {
-        Console.WriteLine("Handle ConsultarOperadoraPlanoSaudeQuery executed!");
-        return new OkObjectResult("Handle ConsultarOperadoraPlanoSaudeQuery executed!");
+        var operadorasPlanoSaude = operadoraPlanoSaudeRepository.Get(request.ObterConsulta(), request.Page, request.Limit);
+
+        if (operadorasPlanoSaude == null || !operadorasPlanoSaude.Any())
+            return new NotFoundResult();
+            
+        return new OkObjectResult(operadorasPlanoSaude);
     }
 }
