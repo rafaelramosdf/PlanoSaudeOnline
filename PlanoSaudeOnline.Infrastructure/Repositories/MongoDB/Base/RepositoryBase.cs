@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using PlanoSaudeOnline.Domain._Shared.Base.Entities;
+using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Responses;
 using PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
 using System.Linq.Expressions;
 
@@ -21,33 +22,48 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         EntityMongoCollection = database.GetCollection<TEntity>(name: collectionName);
     }
 
-    public virtual List<TEntity> Get(int? page = 1, int? limit = 10)
+    public virtual async Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(int? page = 1, int? perPage = 10)
     {
-        limit = limit > 100 ? 100 : limit;
-        return EntityMongoCollection.Find(entity => true).Skip((page - 1) * limit).Limit(limit).ToList();
+        perPage = perPage > 1000 ? 1000 : perPage;
+        var queryStatement = EntityMongoCollection.Find(m => true).Skip((page - 1) * perPage).Limit(perPage).ToListAsync();
+        var totalItemsStatement = EntityMongoCollection.Find(m => true).CountDocumentsAsync();
+
+        await Task.WhenAll(queryStatement, totalItemsStatement);
+
+        var items = queryStatement.Result;
+        var totalItems = totalItemsStatement.Result;
+        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page ?? 1, perPage ?? 10, totalItems);
     }
 
-    public virtual List<TEntity> Get(Expression<Func<TEntity, bool>> query, int? page = 1, int? limit = 10)
+    public virtual async Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(Expression<Func<TEntity, bool>> query, int? page = 1, int? perPage = 10)
     {
-        limit = limit > 100 ? 100 : limit;
-        return EntityMongoCollection.Find(query).Skip((page - 1) * limit).Limit(limit).ToList();
+        perPage = perPage > 1000 ? 1000 : perPage;
+
+        var queryStatement = EntityMongoCollection.Find(query).Skip((page - 1) * perPage).Limit(perPage).ToListAsync();
+        var totalItemsStatement = EntityMongoCollection.Find(query).CountDocumentsAsync();
+
+        await Task.WhenAll(queryStatement, totalItemsStatement);
+
+        var items = queryStatement.Result;
+        var totalItems = totalItemsStatement.Result;
+        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page ?? 1, perPage ?? 10, totalItems);
     }
 
-    public virtual TEntity Get(string id) =>
+    public virtual TEntity Buscar(string id) =>
         EntityMongoCollection.Find(s => s.Id == id).FirstOrDefault();
 
-    public virtual TEntity Create(TEntity entity)
+    public virtual TEntity Criar(TEntity entity)
     {
         EntityMongoCollection.InsertOne(entity);
         return entity;
     }
 
-    public virtual void Update(string id, TEntity entityIn) =>
+    public virtual void Alterar(string id, TEntity entityIn) =>
         EntityMongoCollection.ReplaceOne(entity => entity.Id == id, entityIn);
 
-    public virtual void Remove(TEntity entityIn) =>
+    public virtual void Remover(TEntity entityIn) =>
         EntityMongoCollection.DeleteOne(entity => entity.Id == entityIn.Id);
 
-    public virtual void Remove(string id) =>
+    public virtual void Remover(string id) =>
         EntityMongoCollection.DeleteOne(entity => entity.Id == id);
 }

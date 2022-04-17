@@ -6,11 +6,8 @@ namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Entities;
 
 public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
 {
-    public OperadoraPlanoSaude()
-    {
-    }
-
-    public OperadoraPlanoSaude(bool ativo, 
+    public OperadoraPlanoSaude(
+        bool ativo, 
         string registroAns, 
         string cnpj, 
         string razaoSocial, 

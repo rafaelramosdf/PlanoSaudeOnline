@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Handlers;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Requests;
+using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Responses;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Repositories;
 
 namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers;
@@ -14,18 +15,18 @@ public class IncluirOperadoraPlanoSaudeHandler : IIncluirOperadoraPlanoSaudeHand
         this.operadoraPlanoSaudeRepository = operadoraPlanoSaudeRepository;
     }
 
-    public async Task<IActionResult> HandleAsync(IncluirOperadoraPlanoSaudeRequest request)
+    public async Task<HandlerResponse<OperadoraPlanoSaudeResponse>> HandleAsync(IncluirOperadoraPlanoSaudeRequest request)
     {
-        var operadoraPlanoSaude = new Entities.OperadoraPlanoSaude(request);
+        return await Task.Run<HandlerResponse<OperadoraPlanoSaudeResponse>>(() => 
+        {
+            var operadoraPlanoSaude = new Entities.OperadoraPlanoSaude(request);
 
-        if (!operadoraPlanoSaude.IsValid)
-            return new BadRequestObjectResult(operadoraPlanoSaude.Notifications);
+            if (!operadoraPlanoSaude.IsValid)
+                return new HandlerResponse<OperadoraPlanoSaudeResponse>(System.Net.HttpStatusCode.BadRequest, operadoraPlanoSaude.Notifications);
 
-        operadoraPlanoSaude = operadoraPlanoSaudeRepository.Create(operadoraPlanoSaude);
+            operadoraPlanoSaude = operadoraPlanoSaudeRepository.Criar(operadoraPlanoSaude);
 
-        return new CreatedAtRouteResult(
-            nameof(operadoraPlanoSaude), 
-            new { id = operadoraPlanoSaude.Id }, 
-            operadoraPlanoSaude);
+            return new HandlerResponse<OperadoraPlanoSaudeResponse>(System.Net.HttpStatusCode.Created, new OperadoraPlanoSaudeResponse(operadoraPlanoSaude));
+        });
     }
 }

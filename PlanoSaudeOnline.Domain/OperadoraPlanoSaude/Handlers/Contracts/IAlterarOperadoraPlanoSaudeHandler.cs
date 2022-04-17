@@ -1,8 +1,9 @@
-﻿using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Requests;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Handlers;
+using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Requests;
 
-namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts
+namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
+
+public interface IAlterarOperadoraPlanoSaudeHandler 
+    : _Shared.Contracts.Handlers.IHandlerAsync<HandlerResponse, AlterarOperadoraPlanoSaudeRequest>
 {
-    public interface IAlterarOperadoraPlanoSaudeHandler : _Shared.Contracts.Handlers.IHandlerAsync<AlterarOperadoraPlanoSaudeRequest>
-    {
-    }
 }

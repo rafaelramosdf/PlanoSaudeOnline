@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Handlers;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Requests;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Repositories;
@@ -14,9 +14,13 @@ public class AlterarOperadoraPlanoSaudeHandler : IAlterarOperadoraPlanoSaudeHand
         this.operadoraPlanoSaudeRepository = operadoraPlanoSaudeRepository;
     }
 
-    public async Task<IActionResult> HandleAsync(AlterarOperadoraPlanoSaudeRequest request)
+    public async Task<HandlerResponse> HandleAsync(AlterarOperadoraPlanoSaudeRequest request)
     {
-        Console.WriteLine("Handle AlterarOperadoraPlanoSaudeCommandHandler executed!");
-        return new NoContentResult();
+        return await Task.Run<HandlerResponse>(() => 
+        {
+            operadoraPlanoSaudeRepository.Alterar(request.Id, new Entities.OperadoraPlanoSaude(request));
+            Console.WriteLine("Handle AlterarOperadoraPlanoSaudeCommandHandler executed!");
+            return new HandlerResponse(System.Net.HttpStatusCode.NoContent);
+        });
     }
 }

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Handlers;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Repositories;
 
@@ -13,9 +13,13 @@ public class ExcluirOperadoraPlanoSaudeHandler : IExcluirOperadoraPlanoSaudeHand
         this.operadoraPlanoSaudeRepository = operadoraPlanoSaudeRepository;
     }
 
-    public async Task<IActionResult> HandleAsync(string request)
+    public async Task<HandlerResponse> HandleAsync(string request)
     {
-        Console.WriteLine("Handle ExcluirOperadoraPlanoSaudeCommandHandler executed!");
-        return new NoContentResult();
+        return await Task.Run<HandlerResponse>(() => 
+        {
+            operadoraPlanoSaudeRepository.Remover(request);
+            Console.WriteLine("Handle ExcluirOperadoraPlanoSaudeCommandHandler executed!");
+            return new HandlerResponse(System.Net.HttpStatusCode.NoContent);
+        });
     }
 }

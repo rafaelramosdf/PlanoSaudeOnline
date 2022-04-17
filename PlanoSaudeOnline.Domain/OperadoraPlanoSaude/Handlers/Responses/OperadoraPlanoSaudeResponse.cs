@@ -2,10 +2,6 @@
 
 public class OperadoraPlanoSaudeResponse
 {
-    public OperadoraPlanoSaudeResponse()
-    {
-    }
-
     public OperadoraPlanoSaudeResponse(string id, 
         bool ativo, 
         string registroAns, 

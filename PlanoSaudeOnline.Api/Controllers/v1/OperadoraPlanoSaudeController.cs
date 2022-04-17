@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using PlanoSaudeOnline.Api.Controllers.v1.Base;
+using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Responses;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Entities;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Requests;
@@ -26,7 +27,7 @@ public class OperadoraPlanoSaudeController : BaseController
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(IEnumerable<OperadoraPlanoSaudeResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(PagedQueryResponse<IEnumerable<OperadoraPlanoSaudeResponse>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> Get([FromQuery] ConsultarOperadoraPlanoSaudeRequest query, 
         [FromServices] IConsultarOperadoraPlanoSaudeHandler handler)
     {

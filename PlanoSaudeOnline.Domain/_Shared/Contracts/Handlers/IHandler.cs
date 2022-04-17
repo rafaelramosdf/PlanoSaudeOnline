@@ -1,23 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Handlers;
 
 namespace PlanoSaudeOnline.Domain._Shared.Contracts.Handlers;
 
-public interface IHandler
+public interface IHandler<THandlerResponse> 
+    where THandlerResponse : IHandlerResponse
 {
-    IActionResult Handle();
+    THandlerResponse Handle();
 }
 
-public interface IHandler<TRequest> 
+public interface IHandler<THandlerResponse, TRequest>
+    where THandlerResponse : IHandlerResponse
 {
-    IActionResult Handle(TRequest request);
+    THandlerResponse Handle(TRequest request);
 }
 
-public interface IHandlerAsync
+public interface IHandlerAsync<THandlerResponse>
+    where THandlerResponse : IHandlerResponse
 {
-    Task<IActionResult> HandleAsync();
+    Task<THandlerResponse> HandleAsync();
 }
 
-public interface IHandlerAsync<TRequest>
+public interface IHandlerAsync<THandlerResponse, TRequest>
+    where THandlerResponse : IHandlerResponse
 {
-    Task<IActionResult> HandleAsync(TRequest request);
+    Task<THandlerResponse> HandleAsync(TRequest request);
 }

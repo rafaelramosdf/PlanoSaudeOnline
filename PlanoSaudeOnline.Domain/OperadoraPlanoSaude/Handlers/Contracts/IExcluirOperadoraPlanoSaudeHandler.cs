@@ -1,5 +1,8 @@
-﻿namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
+﻿using PlanoSaudeOnline.Domain._Shared.Base.Handlers;
 
-public interface IExcluirOperadoraPlanoSaudeHandler : _Shared.Contracts.Handlers.IHandlerAsync<string>
+namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
+
+public interface IExcluirOperadoraPlanoSaudeHandler 
+    : _Shared.Contracts.Handlers.IHandlerAsync<HandlerResponse, string>
 {
 }

@@ -1,4 +1,5 @@
 ﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
+using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Responses;
 using System.Linq.Expressions;
 
 namespace PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
@@ -6,11 +7,11 @@ namespace PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
 public interface IRepositoryBase<TEntity>
     where TEntity : Entity
 {
-    List<TEntity> Get(int? page, int? limit);
-    List<TEntity> Get(Expression<Func<TEntity, bool>> query, int? page = 1, int? limit = 10);
-    TEntity Get(string id);
-    TEntity Create(TEntity entity);
-    void Update(string id, TEntity entity);
-    void Remove(TEntity entity);
-    void Remove(string id);
+    Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(int? page, int? perPage);
+    Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(Expression<Func<TEntity, bool>> query, int? page = 1, int? perPage = 10);
+    TEntity Buscar(string id);
+    TEntity Criar(TEntity entity);
+    void Alterar(string id, TEntity entity);
+    void Remover(TEntity entity);
+    void Remover(string id);
 }

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PlanoSaudeOnline.Domain._Shared.Base.Handlers;
+using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Responses;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Requests;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Repositories;
@@ -14,13 +16,13 @@ public class ConsultarOperadoraPlanoSaudeHandler : IConsultarOperadoraPlanoSaude
         this.operadoraPlanoSaudeRepository = operadoraPlanoSaudeRepository;
     }
 
-    public async Task<IActionResult> HandleAsync(ConsultarOperadoraPlanoSaudeRequest request)
+    public async Task<HandlerResponse<PagedQueryResponse<IEnumerable<Entities.OperadoraPlanoSaude>>>> HandleAsync(ConsultarOperadoraPlanoSaudeRequest request)
     {
-        var operadorasPlanoSaude = operadoraPlanoSaudeRepository.Get(request.ObterConsulta(), request.Page, request.Limit);
+        var result = await operadoraPlanoSaudeRepository.Buscar(request.ObterConsulta(), request.Page, request.Limit);
 
-        if (operadorasPlanoSaude == null || !operadorasPlanoSaude.Any())
-            return new NotFoundResult();
-            
-        return new OkObjectResult(operadorasPlanoSaude);
+        if (result.Items == null || !result.Items.Any())
+            return new HandlerResponse<PagedQueryResponse<IEnumerable<Entities.OperadoraPlanoSaude>>>(System.Net.HttpStatusCode.NoContent);
+
+        return new HandlerResponse<PagedQueryResponse<IEnumerable<Entities.OperadoraPlanoSaude>>>(System.Net.HttpStatusCode.OK, result);
     }
 }
