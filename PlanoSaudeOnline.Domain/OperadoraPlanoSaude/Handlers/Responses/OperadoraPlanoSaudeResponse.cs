@@ -1,4 +1,6 @@
-﻿namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Responses;
+﻿using System.Collections.Generic;
+
+namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Responses;
 
 public class OperadoraPlanoSaudeResponse
 {

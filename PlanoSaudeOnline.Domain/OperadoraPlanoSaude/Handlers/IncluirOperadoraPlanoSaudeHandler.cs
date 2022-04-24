@@ -26,6 +26,8 @@ public class IncluirOperadoraPlanoSaudeHandler : IIncluirOperadoraPlanoSaudeHand
 
             operadoraPlanoSaude = operadoraPlanoSaudeRepository.Criar(operadoraPlanoSaude);
 
+            Console.WriteLine("Handle IncluirOperadoraPlanoSaudeHandler executed!");
+
             return new HandlerResponse<OperadoraPlanoSaudeResponse>(System.Net.HttpStatusCode.Created, new OperadoraPlanoSaudeResponse(operadoraPlanoSaude));
         });
     }

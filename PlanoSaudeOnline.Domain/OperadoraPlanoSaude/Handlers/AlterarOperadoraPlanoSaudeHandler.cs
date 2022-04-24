@@ -19,7 +19,9 @@ public class AlterarOperadoraPlanoSaudeHandler : IAlterarOperadoraPlanoSaudeHand
         return await Task.Run<HandlerResponse>(() => 
         {
             operadoraPlanoSaudeRepository.Alterar(request.Id, new Entities.OperadoraPlanoSaude(request));
+
             Console.WriteLine("Handle AlterarOperadoraPlanoSaudeCommandHandler executed!");
+            
             return new HandlerResponse(System.Net.HttpStatusCode.NoContent);
         });
     }

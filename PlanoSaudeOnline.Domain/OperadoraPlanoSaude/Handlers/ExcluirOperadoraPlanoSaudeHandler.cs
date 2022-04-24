@@ -18,7 +18,9 @@ public class ExcluirOperadoraPlanoSaudeHandler : IExcluirOperadoraPlanoSaudeHand
         return await Task.Run<HandlerResponse>(() => 
         {
             operadoraPlanoSaudeRepository.Remover(request);
+
             Console.WriteLine("Handle ExcluirOperadoraPlanoSaudeCommandHandler executed!");
+            
             return new HandlerResponse(System.Net.HttpStatusCode.NoContent);
         });
     }

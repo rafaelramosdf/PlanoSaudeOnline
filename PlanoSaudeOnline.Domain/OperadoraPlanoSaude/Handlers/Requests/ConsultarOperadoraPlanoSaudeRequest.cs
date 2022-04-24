@@ -15,15 +15,36 @@ public class ConsultarOperadoraPlanoSaudeRequest : PagedQueryRequestBase
     }
 
     public string? Id { get; set; }
-    public IEnumerable<string>? Ids { get; set; }
+    public List<string> Ids { get; set; } = new List<string>();
+    public string? Nome { get; set; }
+    public string? Cnpj { get; set; }
+    public string? Uf { get; set; }
 
     public Expression<Func<Entities.OperadoraPlanoSaude, bool>> ObterConsulta() 
     {
         if (!string.IsNullOrEmpty(Id))
             return x => x.Id.Equals(Id);
 
-        if (Ids?.Any() == true)
+        if (Ids != null && Ids.Any())
             return x => Ids.Contains(x.Id);
+
+        if (!string.IsNullOrEmpty(Cnpj))
+            return x => x.Cnpj.Equals(Cnpj);
+
+        if(!string.IsNullOrEmpty(Uf) && !string.IsNullOrEmpty(Nome))
+            return x => 
+            x.Uf != null && x.Uf.ToLower() == Uf.ToLower() && 
+            (x.RazaoSocial.ToLower().Contains(Nome.ToLower()) || 
+            x.NomeFantasia.ToLower().Contains(Nome.ToLower()));
+
+        if (!string.IsNullOrEmpty(Nome))
+            return x => 
+            x.RazaoSocial.ToLower().Contains(Nome.ToLower()) || 
+            x.NomeFantasia.ToLower().Contains(Nome.ToLower());
+
+        if (!string.IsNullOrEmpty(Uf))
+            return x =>
+            x.Uf != null && x.Uf.ToLower() == Uf.ToLower();
 
         return x => true;
     }

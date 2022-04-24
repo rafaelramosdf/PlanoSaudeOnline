@@ -19,6 +19,7 @@ public class BuscarOperadoraPlanoSaudePorIdHandler : IBuscarOperadoraPlanoSaudeP
         return await Task.Run<HandlerResponse<OperadoraPlanoSaudeResponse>>(() => 
         {
             var operadoraPlanoSaude = operadoraPlanoSaudeRepository.Buscar(request);
+
             Console.WriteLine("Handle BuscarOperadoraPlanoSaudePorIdHandler executed!");
 
             if (operadoraPlanoSaude == null)
