@@ -26,7 +26,7 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
     {
         perPage = perPage > 1000 ? 1000 : perPage;
         var queryStatement = EntityMongoCollection.Find(m => true).Skip((page - 1) * perPage).Limit(perPage).ToListAsync();
-        var totalItemsStatement = EntityMongoCollection.Find(m => true).CountDocumentsAsync();
+        var totalItemsStatement = EntityMongoCollection.CountDocumentsAsync(m => true);
 
         await Task.WhenAll(queryStatement, totalItemsStatement);
 
@@ -40,7 +40,7 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         perPage = perPage > 1000 ? 1000 : perPage;
 
         var queryStatement = EntityMongoCollection.Find(query).Skip((page - 1) * perPage).Limit(perPage).ToListAsync();
-        var totalItemsStatement = EntityMongoCollection.Find(query).CountDocumentsAsync();
+        var totalItemsStatement = EntityMongoCollection.CountDocumentsAsync(query);
 
         await Task.WhenAll(queryStatement, totalItemsStatement);
 
@@ -52,10 +52,15 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
     public virtual TEntity Buscar(string id) =>
         EntityMongoCollection.Find(s => s.Id == id).FirstOrDefault();
 
-    public virtual TEntity Criar(TEntity entity)
+    public virtual TEntity Inserir(TEntity entity)
     {
         EntityMongoCollection.InsertOne(entity);
         return entity;
+    }
+
+    public virtual void Inserir(IEnumerable<TEntity> entities)
+    {
+        EntityMongoCollection.InsertMany(entities);
     }
 
     public virtual void Alterar(string id, TEntity entityIn) =>

@@ -1,19 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using PlanoSaudeOnline.Api.Controllers.v1.Base;
 using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Responses;
-using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Entities;
-using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
-using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Requests;
-using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Responses;
+using PlanoSaudeOnline.Domain.PlanoSaude.Entities;
+using PlanoSaudeOnline.Domain.PlanoSaude.Handlers.Contracts;
+using PlanoSaudeOnline.Domain.PlanoSaude.Handlers.Requests;
+using PlanoSaudeOnline.Domain.PlanoSaude.Handlers.Responses;
 
 namespace PlanoSaudeOnline.Api.Controllers.v1;
 
-public class OperadoraPlanoSaudeController : BaseController
+public class PlanoSaudeController : BaseController
 {
-    private readonly ILogger<OperadoraPlanoSaudeController> logger;
+    private readonly ILogger<PlanoSaudeController> logger;
 
-    public OperadoraPlanoSaudeController(
-        ILogger<OperadoraPlanoSaudeController> logger)
+    public PlanoSaudeController(
+        ILogger<PlanoSaudeController> logger)
     {
         this.logger = logger;
     }
@@ -21,17 +21,17 @@ public class OperadoraPlanoSaudeController : BaseController
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> Post(
-        [FromBody] IncluirOperadoraPlanoSaudeRequest request, 
-        [FromServices] IIncluirOperadoraPlanoSaudeHandler handler)
+        [FromBody] IncluirPlanoSaudeRequest request, 
+        [FromServices] IIncluirPlanoSaudeHandler handler)
     {
         return await handler.HandleAsync(request);
     }
 
     [HttpGet]
-    [ProducesResponseType(typeof(PagedQueryResponse<IEnumerable<OperadoraPlanoSaudeResponse>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(PagedQueryResponse<IEnumerable<PlanoSaudeResponse>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> Get(
-        [FromQuery] ConsultarOperadoraPlanoSaudeRequest query, 
-        [FromServices] IConsultarOperadoraPlanoSaudeHandler handler)
+        [FromQuery] ConsultarPlanoSaudeRequest query, 
+        [FromServices] IConsultarPlanoSaudeHandler handler)
     {
         if (query.Limit > 100)
             return new BadRequestObjectResult("O limite de item por página é de 100 registros");
@@ -39,11 +39,11 @@ public class OperadoraPlanoSaudeController : BaseController
         return await handler.HandleAsync(query);
     }
 
-    [HttpGet("{id}", Name = nameof(OperadoraPlanoSaude))]
-    [ProducesResponseType(typeof(OperadoraPlanoSaudeResponse), StatusCodes.Status200OK)]
+    [HttpGet("{id}", Name = nameof(PlanoSaude))]
+    [ProducesResponseType(typeof(PlanoSaudeResponse), StatusCodes.Status200OK)]
     public async Task<IActionResult> Get(
         string id, 
-        [FromServices] IBuscarOperadoraPlanoSaudePorIdHandler handler)
+        [FromServices] IBuscarPlanoSaudePorIdHandler handler)
     {
         return await handler.HandleAsync(id);
     }
@@ -52,8 +52,8 @@ public class OperadoraPlanoSaudeController : BaseController
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> Put(
         string id, 
-        [FromBody] AlterarOperadoraPlanoSaudeRequest request, 
-        [FromServices] IAlterarOperadoraPlanoSaudeHandler handler)
+        [FromBody] AlterarPlanoSaudeRequest request, 
+        [FromServices] IAlterarPlanoSaudeHandler handler)
     {
         if (id != request.Id)
             return new BadRequestObjectResult("ID divergente");
@@ -65,7 +65,7 @@ public class OperadoraPlanoSaudeController : BaseController
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     public async Task<IActionResult> Delete(
         string id, 
-        [FromServices] IExcluirOperadoraPlanoSaudeHandler handler)
+        [FromServices] IExcluirPlanoSaudeHandler handler)
     {
         return await handler.HandleAsync(id);
     }

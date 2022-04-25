@@ -5,6 +5,8 @@ using PlanoSaudeOnline.Domain.FaixaEtaria.Repositories;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Repositories;
+using PlanoSaudeOnline.Domain.PlanoSaude.Handlers;
+using PlanoSaudeOnline.Domain.PlanoSaude.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.PlanoSaude.Repositories;
 using PlanoSaudeOnline.Domain.RedeEstabelecimento.Repositories;
 using PlanoSaudeOnline.Domain.Usuario.Repositories;
@@ -37,10 +39,19 @@ public static class DependencyInjectionExtension
         /// <summary>
         /// Handlers Injection
         /// </summary>
+        
+        // OperadoraPlanoSaude
         builder.Services.AddScoped<IIncluirOperadoraPlanoSaudeHandler, IncluirOperadoraPlanoSaudeHandler>();
         builder.Services.AddScoped<IConsultarOperadoraPlanoSaudeHandler, ConsultarOperadoraPlanoSaudeHandler>();
         builder.Services.AddScoped<IAlterarOperadoraPlanoSaudeHandler, AlterarOperadoraPlanoSaudeHandler>();
         builder.Services.AddScoped<IExcluirOperadoraPlanoSaudeHandler, ExcluirOperadoraPlanoSaudeHandler>();
         builder.Services.AddScoped<IBuscarOperadoraPlanoSaudePorIdHandler, BuscarOperadoraPlanoSaudePorIdHandler>();
+
+        // PlanoSaude
+        builder.Services.AddScoped<IIncluirPlanoSaudeHandler, IncluirPlanoSaudeHandler>();
+        builder.Services.AddScoped<IConsultarPlanoSaudeHandler, ConsultarPlanoSaudeHandler>();
+        builder.Services.AddScoped<IAlterarPlanoSaudeHandler, AlterarPlanoSaudeHandler>();
+        builder.Services.AddScoped<IExcluirPlanoSaudeHandler, ExcluirPlanoSaudeHandler>();
+        builder.Services.AddScoped<IBuscarPlanoSaudePorIdHandler, BuscarPlanoSaudePorIdHandler>();
     }
 }

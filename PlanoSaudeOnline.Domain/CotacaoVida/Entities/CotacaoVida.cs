@@ -1,5 +1,4 @@
-﻿using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.Serialization.Attributes;
 using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 
 namespace PlanoSaudeOnline.Domain.CotacaoVida.Entities;

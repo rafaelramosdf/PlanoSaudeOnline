@@ -18,6 +18,7 @@ public class ConsultarOperadoraPlanoSaudeRequest : PagedQueryRequestBase
     public List<string> Ids { get; set; } = new List<string>();
     public string? Nome { get; set; }
     public string? Cnpj { get; set; }
+    public string? RegistroAns { get; set; }
     public string? Uf { get; set; }
 
     public Expression<Func<Entities.OperadoraPlanoSaude, bool>> ObterConsulta() 
@@ -31,7 +32,10 @@ public class ConsultarOperadoraPlanoSaudeRequest : PagedQueryRequestBase
         if (!string.IsNullOrEmpty(Cnpj))
             return x => x.Cnpj.Equals(Cnpj);
 
-        if(!string.IsNullOrEmpty(Uf) && !string.IsNullOrEmpty(Nome))
+        if (!string.IsNullOrEmpty(RegistroAns))
+            return x => x.RegistroAns.Equals(RegistroAns);
+
+        if (!string.IsNullOrEmpty(Uf) && !string.IsNullOrEmpty(Nome))
             return x => 
             x.Uf != null && x.Uf.ToLower() == Uf.ToLower() && 
             (x.RazaoSocial.ToLower().Contains(Nome.ToLower()) || 

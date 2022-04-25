@@ -6,7 +6,8 @@ public class AlterarOperadoraPlanoSaudeRequest
     {
     }
 
-    public AlterarOperadoraPlanoSaudeRequest(string id, 
+    public AlterarOperadoraPlanoSaudeRequest(
+        string id, 
         bool ativo, 
         string registroAns, 
         string cnpj, 

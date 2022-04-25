@@ -1,28 +1,27 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
-using PlanoSaudeOnline.Domain.PlanoSaude.Handlers.Requests;
+﻿namespace PlanoSaudeOnline.Domain.PlanoSaude.Handlers.Responses;
 
-namespace PlanoSaudeOnline.Domain.PlanoSaude.Entities;
-
-public class PlanoSaude : Entity
+public class PlanoSaudeResponse
 {
-    public PlanoSaude(
-        string idPlano, 
-        string nomePlano, 
-        string? codigoPlano, 
-        string? registroAnsOperadora, 
-        string? tipoContratacao, 
-        string? segmentoAssistencial, 
-        string? possuiCoberturaObstetricia, 
+    public PlanoSaudeResponse(
+        string id,
+        string idPlano,
+        string nomePlano,
+        string? codigoPlano,
+        string? registroAnsOperadora,
+        string? tipoContratacao,
+        string? segmentoAssistencial,
+        string? possuiCoberturaObstetricia,
         string? possuiCoberturaOdontologica,
         string? cobertura,
-        string? abrangenciaCobertura, 
-        string? acomodacaoHospitalar, 
-        string? fatorModerador, 
-        string? situacaoPlano, 
-        DateTime? dataSituacaoPlano, 
-        DateTime? dataRegistroPlano, 
+        string? abrangenciaCobertura,
+        string? acomodacaoHospitalar,
+        string? fatorModerador,
+        string? situacaoPlano,
+        DateTime? dataSituacaoPlano,
+        DateTime? dataRegistroPlano,
         DateTime? dataAtualizacao)
     {
+        Id = id;
         IdPlano = idPlano;
         NomePlano = nomePlano;
         CodigoPlano = codigoPlano;
@@ -41,51 +40,33 @@ public class PlanoSaude : Entity
         DataAtualizacao = dataAtualizacao;
     }
 
-    public PlanoSaude(IncluirPlanoSaudeRequest incluirPlanoSaudeRequest)
+    public PlanoSaudeResponse(Entities.PlanoSaude planoSaude)
     {
-        IdPlano = incluirPlanoSaudeRequest.IdPlano;
-        NomePlano = incluirPlanoSaudeRequest.NomePlano;
-        CodigoPlano = incluirPlanoSaudeRequest.CodigoPlano;
-        RegistroAnsOperadora = incluirPlanoSaudeRequest.RegistroAnsOperadora;
-        TipoContratacao = incluirPlanoSaudeRequest.TipoContratacao;
-        SegmentoAssistencial = incluirPlanoSaudeRequest.SegmentoAssistencial;
-        PossuiCoberturaObstetricia = incluirPlanoSaudeRequest.PossuiCoberturaObstetricia;
-        PossuiCoberturaOdontologica = incluirPlanoSaudeRequest.PossuiCoberturaOdontologica;
-        Cobertura = incluirPlanoSaudeRequest.Cobertura;
-        AbrangenciaCobertura = incluirPlanoSaudeRequest.AbrangenciaCobertura;
-        AcomodacaoHospitalar = incluirPlanoSaudeRequest.AcomodacaoHospitalar;
-        FatorModerador = incluirPlanoSaudeRequest.FatorModerador;
-        SituacaoPlano = incluirPlanoSaudeRequest.SituacaoPlano;
-        DataSituacaoPlano = incluirPlanoSaudeRequest.DataSituacaoPlano;
-        DataRegistroPlano = incluirPlanoSaudeRequest.DataRegistroPlano;
-        DataAtualizacao = incluirPlanoSaudeRequest.DataAtualizacao;
+        Id = planoSaude.Id;
+        IdPlano = planoSaude.IdPlano;
+        NomePlano = planoSaude.NomePlano;
+        CodigoPlano = planoSaude.CodigoPlano;
+        RegistroAnsOperadora = planoSaude.RegistroAnsOperadora;
+        TipoContratacao = planoSaude.TipoContratacao;
+        SegmentoAssistencial = planoSaude.SegmentoAssistencial;
+        PossuiCoberturaObstetricia = planoSaude.PossuiCoberturaObstetricia;
+        PossuiCoberturaOdontologica = planoSaude.PossuiCoberturaOdontologica;
+        Cobertura = planoSaude.Cobertura;
+        AbrangenciaCobertura = planoSaude.AbrangenciaCobertura;
+        AcomodacaoHospitalar = planoSaude.AcomodacaoHospitalar;
+        FatorModerador = planoSaude.FatorModerador;
+        SituacaoPlano = planoSaude.SituacaoPlano;
+        DataSituacaoPlano = planoSaude.DataSituacaoPlano;
+        DataRegistroPlano = planoSaude.DataRegistroPlano;
+        DataAtualizacao = planoSaude.DataAtualizacao;
     }
 
-    public PlanoSaude(AlterarPlanoSaudeRequest alterarPlanoSaudeRequest)
-    {
-        Id = alterarPlanoSaudeRequest.Id;
-        IdPlano = alterarPlanoSaudeRequest.IdPlano;
-        NomePlano = alterarPlanoSaudeRequest.NomePlano;
-        CodigoPlano = alterarPlanoSaudeRequest.CodigoPlano;
-        RegistroAnsOperadora = alterarPlanoSaudeRequest.RegistroAnsOperadora;
-        TipoContratacao = alterarPlanoSaudeRequest.TipoContratacao;
-        SegmentoAssistencial = alterarPlanoSaudeRequest.SegmentoAssistencial;
-        PossuiCoberturaObstetricia = alterarPlanoSaudeRequest.PossuiCoberturaObstetricia;
-        PossuiCoberturaOdontologica = alterarPlanoSaudeRequest.PossuiCoberturaOdontologica;
-        Cobertura = alterarPlanoSaudeRequest.Cobertura;
-        AbrangenciaCobertura = alterarPlanoSaudeRequest.AbrangenciaCobertura;
-        AcomodacaoHospitalar = alterarPlanoSaudeRequest.AcomodacaoHospitalar;
-        FatorModerador = alterarPlanoSaudeRequest.FatorModerador;
-        SituacaoPlano = alterarPlanoSaudeRequest.SituacaoPlano;
-        DataSituacaoPlano = alterarPlanoSaudeRequest.DataSituacaoPlano;
-        DataRegistroPlano = alterarPlanoSaudeRequest.DataRegistroPlano;
-        DataAtualizacao = alterarPlanoSaudeRequest.DataAtualizacao;
-    }
+    public string Id { get; set; }
 
     /// <summary>
     /// Este campo representa o Id do Plano na base da ANS
     /// </summary>
-    public string IdPlano { get; set; }
+    public string? IdPlano { get; set; }
 
     public string NomePlano { get; set; }
 

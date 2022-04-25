@@ -24,7 +24,7 @@ public class IncluirOperadoraPlanoSaudeHandler : IIncluirOperadoraPlanoSaudeHand
             if (!operadoraPlanoSaude.IsValid)
                 return new HandlerResponse<OperadoraPlanoSaudeResponse>(System.Net.HttpStatusCode.BadRequest, operadoraPlanoSaude.Notifications);
 
-            operadoraPlanoSaude = operadoraPlanoSaudeRepository.Criar(operadoraPlanoSaude);
+            operadoraPlanoSaude = operadoraPlanoSaudeRepository.Inserir(operadoraPlanoSaude);
 
             Console.WriteLine("Handle IncluirOperadoraPlanoSaudeHandler executed!");
 
