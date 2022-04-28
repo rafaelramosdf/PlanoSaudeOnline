@@ -27,7 +27,6 @@ public class OperadoraPlanoSaudeResponse
         NomeFantasia = nomeFantasia;
         Modalidade = modalidade;
         Logradouro = logradouro;
-        Numero = numero;
         Complemento = complemento;
         Bairro = bairro;
         Cidade = cidade;
@@ -47,7 +46,6 @@ public class OperadoraPlanoSaudeResponse
         NomeFantasia = operadoraPlanoSaude.NomeFantasia;
         Modalidade = operadoraPlanoSaude.Modalidade;
         Logradouro = operadoraPlanoSaude.Logradouro;
-        Numero = operadoraPlanoSaude.Numero;
         Complemento = operadoraPlanoSaude.Complemento;
         Bairro = operadoraPlanoSaude.Bairro;
         Cidade = operadoraPlanoSaude.Cidade;
@@ -65,7 +63,6 @@ public class OperadoraPlanoSaudeResponse
     public string NomeFantasia { get; set; }
     public string? Modalidade { get; set; }
     public string? Logradouro { get; set; }
-    public string? Numero { get; set; }
     public string? Complemento { get; set; }
     public string? Bairro { get; set; }
     public string? Cidade { get; set; }

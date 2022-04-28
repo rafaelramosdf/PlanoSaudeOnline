@@ -10,13 +10,43 @@ public abstract class Entity
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
-    public virtual string Id { get; set; }
+    public string Id { get; set; }
 
     [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
-    public virtual DateTime CadastradoEm { get; set; } = DateTime.Now;
+    public DateTime CadastradoEm { get; set; } = DateTime.Now;
 
     [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
-    public virtual DateTime? AlteradoEm { get; set; }
+    public DateTime? AlteradoEm { get; set; }
+
+    public List<string> Tags { get; private set; } = new List<string>();
+
+    protected void SetTags(List<string> tags)
+    {
+        foreach (var t in tags)
+        {
+            if (!string.IsNullOrEmpty(t))
+            {
+                Tags.AddRange(t.ToLower().Split(" ").ToList());
+            }
+        }
+    }
+
+    protected void AddTag(string? tag)
+    {
+        if (!string.IsNullOrEmpty(tag))
+            Tags.Add(tag.ToLower());
+    }
+
+    protected void AddTag(List<string> tags)
+    {
+        if (tags.Any())
+        {
+            foreach (var t in tags)
+            {
+                AddTag(t.ToLower());
+            }
+        }
+    }
 }
 
 [Serializable]

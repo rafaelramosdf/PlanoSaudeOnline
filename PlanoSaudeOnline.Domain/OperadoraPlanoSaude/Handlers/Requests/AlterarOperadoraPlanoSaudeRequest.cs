@@ -14,8 +14,7 @@ public class AlterarOperadoraPlanoSaudeRequest
         string razaoSocial, 
         string nomeFantasia, 
         string? modalidade, 
-        string? logradouro, 
-        string? numero, 
+        string? logradouro,
         string? complemento, 
         string? bairro, 
         string? cidade, 
@@ -32,7 +31,6 @@ public class AlterarOperadoraPlanoSaudeRequest
         NomeFantasia = nomeFantasia;
         Modalidade = modalidade;
         Logradouro = logradouro;
-        Numero = numero;
         Complemento = complemento;
         Bairro = bairro;
         Cidade = cidade;
@@ -52,7 +50,6 @@ public class AlterarOperadoraPlanoSaudeRequest
         NomeFantasia = operadoraPlanoSaude.NomeFantasia;
         Modalidade = operadoraPlanoSaude.Modalidade;
         Logradouro = operadoraPlanoSaude.Logradouro;
-        Numero = operadoraPlanoSaude.Numero;
         Complemento = operadoraPlanoSaude.Complemento;
         Bairro = operadoraPlanoSaude.Bairro;
         Cidade = operadoraPlanoSaude.Cidade;
@@ -70,7 +67,6 @@ public class AlterarOperadoraPlanoSaudeRequest
     public string NomeFantasia { get; set; }
     public string? Modalidade { get; set; }
     public string? Logradouro { get; set; }
-    public string? Numero { get; set; }
     public string? Complemento { get; set; }
     public string? Bairro { get; set; }
     public string? Cidade { get; set; }

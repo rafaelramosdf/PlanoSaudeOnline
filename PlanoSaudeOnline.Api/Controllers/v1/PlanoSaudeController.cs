@@ -34,7 +34,7 @@ public class PlanoSaudeController : BaseController
         [FromServices] IConsultarPlanoSaudeHandler handler)
     {
         if (query.Limit > 100)
-            return new BadRequestObjectResult("O limite de item por página é de 100 registros");
+            return new BadRequestObjectResult("O limite de itens por página é de 1000 registros");
 
         return await handler.HandleAsync(query);
     }
@@ -68,5 +68,13 @@ public class PlanoSaudeController : BaseController
         [FromServices] IExcluirPlanoSaudeHandler handler)
     {
         return await handler.HandleAsync(id);
+    }
+
+    [HttpPost("Atualizacoes/Tags")]
+    [ProducesResponseType(StatusCodes.Status201Created)]
+    public async Task<IActionResult> AtualizacoesTags(
+        [FromServices] IAtualizarTagsPlanoSaudeHandler handler)
+    {
+        return await handler.HandleAsync();
     }
 }

@@ -13,8 +13,7 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         string razaoSocial, 
         string nomeFantasia, 
         string? modalidade, 
-        string? logradouro, 
-        string? numero, 
+        string? logradouro,
         string? complemento, 
         string? bairro, 
         string? cidade, 
@@ -30,7 +29,6 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         NomeFantasia = nomeFantasia;
         Modalidade = modalidade;
         Logradouro = logradouro;
-        Numero = numero;
         Complemento = complemento;
         Bairro = bairro;
         Cidade = cidade;
@@ -38,6 +36,7 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         Cep = cep;
         RegiaoComercializacao = regiaoComercializacao;
         DataRegistroAns = dataRegistroAns;
+        InicializarTags();
     }
 
     public OperadoraPlanoSaude(IncluirOperadoraPlanoSaudeRequest incluirOperadoraPlanoSaudeRequest)
@@ -49,7 +48,6 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         NomeFantasia = incluirOperadoraPlanoSaudeRequest.NomeFantasia;
         Modalidade = incluirOperadoraPlanoSaudeRequest.Modalidade;
         Logradouro = incluirOperadoraPlanoSaudeRequest.Logradouro;
-        Numero = incluirOperadoraPlanoSaudeRequest.Numero;
         Complemento = incluirOperadoraPlanoSaudeRequest.Complemento;
         Bairro = incluirOperadoraPlanoSaudeRequest.Bairro;
         Cidade = incluirOperadoraPlanoSaudeRequest.Cidade;
@@ -57,6 +55,7 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         Cep = incluirOperadoraPlanoSaudeRequest.Cep;
         RegiaoComercializacao = incluirOperadoraPlanoSaudeRequest.RegiaoComercializacao;
         DataRegistroAns = incluirOperadoraPlanoSaudeRequest.DataRegistroAns;
+        InicializarTags();
     }
 
     public OperadoraPlanoSaude(AlterarOperadoraPlanoSaudeRequest alterarOperadoraPlanoSaudeRequest)
@@ -69,7 +68,6 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         NomeFantasia = alterarOperadoraPlanoSaudeRequest.NomeFantasia;
         Modalidade = alterarOperadoraPlanoSaudeRequest.Modalidade;
         Logradouro = alterarOperadoraPlanoSaudeRequest.Logradouro;
-        Numero = alterarOperadoraPlanoSaudeRequest.Numero;
         Complemento = alterarOperadoraPlanoSaudeRequest.Complemento;
         Bairro = alterarOperadoraPlanoSaudeRequest.Bairro;
         Cidade = alterarOperadoraPlanoSaudeRequest.Cidade;
@@ -77,6 +75,7 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         Cep = alterarOperadoraPlanoSaudeRequest.Cep;
         RegiaoComercializacao = alterarOperadoraPlanoSaudeRequest.RegiaoComercializacao;
         DataRegistroAns = alterarOperadoraPlanoSaudeRequest.DataRegistroAns;
+        InicializarTags();
     }
 
     public bool Ativo { get; set; }
@@ -92,8 +91,6 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
     public string? Modalidade { get; set; }
 
     public string? Logradouro { get; set; }
-
-    public string? Numero { get; set; }
 
     public string? Complemento { get; set; }
 
@@ -117,4 +114,25 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
     public string? RegiaoComercializacao { get; set; }
 
     public DateTime? DataRegistroAns { get; set; }
+
+    public void InicializarTags()
+    {
+        var tags = new List<string>();
+
+        tags.Add(RegistroAns);
+        tags.Add(Cnpj);
+        tags.Add(RazaoSocial);
+        tags.Add(NomeFantasia);
+
+        if(!string.IsNullOrEmpty(Modalidade))
+            tags.Add(Modalidade);
+
+        if (!string.IsNullOrEmpty(Cidade))
+            tags.Add(Cidade);
+
+        if (!string.IsNullOrEmpty(Uf))
+            tags.Add(Uf);
+
+        SetTags(tags);
+    }
 }

@@ -34,7 +34,7 @@ public class ValorComercialMensalidadeController : BaseController
         [FromServices] IConsultarValorComercialMensalidadeHandler handler)
     {
         if (query.Limit > 100)
-            return new BadRequestObjectResult("O limite de item por página é de 100 registros");
+            return new BadRequestObjectResult("O limite de itens por página é de 1000 registros");
 
         return await handler.HandleAsync(query);
     }

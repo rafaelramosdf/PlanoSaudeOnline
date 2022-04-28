@@ -39,6 +39,7 @@ public class PlanoSaude : Entity
         DataSituacaoPlano = dataSituacaoPlano;
         DataRegistroPlano = dataRegistroPlano;
         DataAtualizacao = dataAtualizacao;
+        InicializarTags();
     }
 
     public PlanoSaude(IncluirPlanoSaudeRequest incluirPlanoSaudeRequest)
@@ -59,6 +60,7 @@ public class PlanoSaude : Entity
         DataSituacaoPlano = incluirPlanoSaudeRequest.DataSituacaoPlano;
         DataRegistroPlano = incluirPlanoSaudeRequest.DataRegistroPlano;
         DataAtualizacao = incluirPlanoSaudeRequest.DataAtualizacao;
+        InicializarTags();
     }
 
     public PlanoSaude(AlterarPlanoSaudeRequest alterarPlanoSaudeRequest)
@@ -80,6 +82,7 @@ public class PlanoSaude : Entity
         DataSituacaoPlano = alterarPlanoSaudeRequest.DataSituacaoPlano;
         DataRegistroPlano = alterarPlanoSaudeRequest.DataRegistroPlano;
         DataAtualizacao = alterarPlanoSaudeRequest.DataAtualizacao;
+        InicializarTags();
     }
 
     /// <summary>
@@ -191,4 +194,21 @@ public class PlanoSaude : Entity
     public DateTime? DataRegistroPlano { get; set; }
 
     public DateTime? DataAtualizacao { get; set; }
+
+    private void InicializarTags()
+    {
+        AddTag(IdPlano);
+        AddTag(NomePlano.Split(" ").ToList());
+        AddTag(RegistroAnsOperadora);
+        AddTag(CodigoPlano);
+        AddTag(SegmentoAssistencial);
+        AddTag(TipoContratacao);
+        AddTag(Cobertura);
+        AddTag(PossuiCoberturaObstetricia);
+
+        if (!string.IsNullOrEmpty(PossuiCoberturaOdontologica) && PossuiCoberturaOdontologica != "0")
+            AddTag("com odontologia");
+        else
+            AddTag("sem odontologia");
+    }
 }

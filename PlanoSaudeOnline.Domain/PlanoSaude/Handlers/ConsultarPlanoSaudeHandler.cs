@@ -18,7 +18,7 @@ public class ConsultarPlanoSaudeHandler : IConsultarPlanoSaudeHandler
 
     public async Task<HandlerResponse<PagedQueryResponse<IEnumerable<PlanoSaudeResponse>>>> HandleAsync(ConsultarPlanoSaudeRequest request)
     {
-        var queryResult = await planoSaudeRepository.Buscar(request.ObterConsulta(), request.Page, request.Limit);
+        var queryResult = await planoSaudeRepository.Pesquisar(request.Search, request.Page, request.Limit);
 
         Console.WriteLine("Handle ConsultarPlanoSaudeHandler executed!");
 

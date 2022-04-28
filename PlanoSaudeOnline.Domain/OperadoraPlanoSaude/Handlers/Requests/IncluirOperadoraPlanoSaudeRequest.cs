@@ -29,7 +29,6 @@ public class IncluirOperadoraPlanoSaudeRequest
         NomeFantasia = nomeFantasia;
         Modalidade = modalidade;
         Logradouro = logradouro;
-        Numero = numero;
         Complemento = complemento;
         Bairro = bairro;
         Cidade = cidade;
@@ -48,7 +47,6 @@ public class IncluirOperadoraPlanoSaudeRequest
         NomeFantasia = operadoraPlanoSaudeRequest.NomeFantasia;
         Modalidade = operadoraPlanoSaudeRequest.Modalidade;
         Logradouro = operadoraPlanoSaudeRequest.Logradouro;
-        Numero = operadoraPlanoSaudeRequest.Numero;
         Complemento = operadoraPlanoSaudeRequest.Complemento;
         Bairro = operadoraPlanoSaudeRequest.Bairro;
         Cidade = operadoraPlanoSaudeRequest.Cidade;
@@ -65,7 +63,6 @@ public class IncluirOperadoraPlanoSaudeRequest
     public string NomeFantasia { get; set; }
     public string? Modalidade { get; set; }
     public string? Logradouro { get; set; }
-    public string? Numero { get; set; }
     public string? Complemento { get; set; }
     public string? Bairro { get; set; }
     public string? Cidade { get; set; }

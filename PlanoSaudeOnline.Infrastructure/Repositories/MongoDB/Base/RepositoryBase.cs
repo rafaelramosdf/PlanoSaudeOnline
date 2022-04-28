@@ -22,38 +22,69 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         EntityMongoCollection = database.GetCollection<TEntity>(name: collectionName);
     }
 
-    public virtual async Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(int? page = 1, int? perPage = 10)
-    {
-        perPage = perPage > 1000 ? 1000 : perPage;
-        var queryStatement = EntityMongoCollection.Find(m => true).Skip((page - 1) * perPage).Limit(perPage).ToListAsync();
-        var totalItemsStatement = EntityMongoCollection.CountDocumentsAsync(m => true);
-
-        await Task.WhenAll(queryStatement, totalItemsStatement);
-
-        var items = queryStatement.Result;
-        var totalItems = totalItemsStatement.Result;
-        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page ?? 1, perPage ?? 10, totalItems);
-    }
-
-    public virtual async Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(Expression<Func<TEntity, bool>> query, int? page = 1, int? perPage = 10)
-    {
-        perPage = perPage > 1000 ? 1000 : perPage;
-
-        var queryStatement = EntityMongoCollection.Find(query).Skip((page - 1) * perPage).Limit(perPage).ToListAsync();
-        var totalItemsStatement = EntityMongoCollection.CountDocumentsAsync(query);
-
-        await Task.WhenAll(queryStatement, totalItemsStatement);
-
-        var items = queryStatement.Result;
-        var totalItems = totalItemsStatement.Result;
-        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page ?? 1, perPage ?? 10, totalItems);
-    }
-
     public virtual TEntity Buscar(string id) =>
         EntityMongoCollection.Find(s => s.Id == id).FirstOrDefault();
 
+    public virtual async Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(int page = 1, int perPage = 10)
+    {
+        perPage = perPage > 1000 ? 1000 : perPage;
+
+        var queryStatement = await EntityMongoCollection.FindAsync(_ => true, 
+            new FindOptions<TEntity> 
+            { 
+                Skip = page - 1, 
+                Limit = perPage 
+            });
+
+        var totalItems = await EntityMongoCollection.EstimatedDocumentCountAsync(new EstimatedDocumentCountOptions { MaxTime = TimeSpan.FromMilliseconds(1000) });
+        var items = queryStatement.ToList();
+
+        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page, perPage, totalItems);
+    }
+
+    public virtual async Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(Expression<Func<TEntity, bool>> query, int page = 1, int perPage = 10)
+    {
+        perPage = perPage > 1000 ? 1000 : perPage;
+
+        var queryStatement = await EntityMongoCollection.FindAsync(query, 
+            new FindOptions<TEntity> 
+            { 
+                Skip = page - 1, 
+                Limit = perPage 
+            });
+
+        var totalItems = await EntityMongoCollection.CountDocumentsAsync(query, new CountOptions { MaxTime = TimeSpan.FromMilliseconds(1000) });
+        
+        var items = queryStatement.ToList();
+        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page, perPage, totalItems);
+    }
+
+    public virtual async Task<PagedQueryResponse<IEnumerable<TEntity>>> Pesquisar(string? search, int page = 1, int perPage = 10)
+    {
+        perPage = perPage > 1000 ? 1000 : perPage;
+
+        FilterDefinition<TEntity>? filter;
+        var tags = search?.ToLower().Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).ToList();
+        filter = !string.IsNullOrEmpty(search) 
+            ? Builders<TEntity>.Filter.All(c => c.Tags, tags) 
+            : Builders<TEntity>.Filter.Where(_ => true);
+
+        var queryStatement = await EntityMongoCollection.FindAsync(filter,
+            new FindOptions<TEntity>
+            {
+                Skip = page - 1,
+                Limit = perPage
+            });
+
+        var totalItems = await EntityMongoCollection.CountDocumentsAsync(filter);
+        var items = queryStatement.ToList();
+
+        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page, perPage, totalItems);
+    }
+
     public virtual TEntity Inserir(TEntity entity)
     {
+        entity.CadastradoEm = DateTime.Now;
         EntityMongoCollection.InsertOne(entity);
         return entity;
     }
@@ -63,8 +94,11 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         EntityMongoCollection.InsertMany(entities);
     }
 
-    public virtual void Alterar(string id, TEntity entityIn) =>
+    public virtual void Alterar(string id, TEntity entityIn)
+    {
+        entityIn.AlteradoEm = DateTime.Now;
         EntityMongoCollection.ReplaceOne(entity => entity.Id == id, entityIn);
+    }
 
     public virtual void Remover(TEntity entityIn) =>
         EntityMongoCollection.DeleteOne(entity => entity.Id == entityIn.Id);
