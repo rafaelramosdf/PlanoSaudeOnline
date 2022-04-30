@@ -24,7 +24,7 @@ public static class ConversorExtension
                 data.Items?.ConverterParaOperadoraPlanoSaudeResponse() ?? new List<OperadoraPlanoSaudeResponse>(), 
                 data.CurrentPage, 
                 data.PerPage, 
-                data.TotalItems);
+                data.HasNextPage);
     }
 
     public static IEnumerable<PlanoSaudeResponse> ConverterParaPlanoSaudeResponse(this IEnumerable<PlanoSaude> data)
@@ -43,7 +43,7 @@ public static class ConversorExtension
                 data.Items?.ConverterParaPlanoSaudeResponse() ?? new List<PlanoSaudeResponse>(),
                 data.CurrentPage,
                 data.PerPage,
-                data.TotalItems);
+                data.HasNextPage);
     }
 
     public static IEnumerable<ValorComercialMensalidadeResponse> ConverterParaValorComercialMensalidadeResponse(this IEnumerable<ValorComercialMensalidade> data)
@@ -62,6 +62,6 @@ public static class ConversorExtension
                 data.Items?.ConverterParaValorComercialMensalidadeResponse() ?? new List<ValorComercialMensalidadeResponse>(),
                 data.CurrentPage,
                 data.PerPage,
-                data.TotalItems);
+                data.HasNextPage);
     }
 }

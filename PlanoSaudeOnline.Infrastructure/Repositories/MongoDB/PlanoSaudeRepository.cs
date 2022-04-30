@@ -23,6 +23,6 @@ public class PlanoSaudeRepository : RepositoryBase<PlanoSaude>, IPlanoSaudeRepos
 
         var items = queryStatement.ToList();
 
-        return new PagedQueryResponse<IEnumerable<PlanoSaude>>(items, 1, 1, 1);
+        return new PagedQueryResponse<IEnumerable<PlanoSaude>>(items, 1, 1, false);
     }
 }

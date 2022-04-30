@@ -25,7 +25,8 @@ public class IncluirValorComercialMensalidadeHandler : IIncluirValorComercialMen
 
             Console.WriteLine("Handle IncluirValorComercialMensalidadeHandler executed!");
 
-            return new HandlerResponse<ValorComercialMensalidadeResponse>(System.Net.HttpStatusCode.Created, new ValorComercialMensalidadeResponse(ValorComercialMensalidade));
+            return new HandlerResponse<ValorComercialMensalidadeResponse>(System.Net.HttpStatusCode.Created, 
+                new ValorComercialMensalidadeResponse(ValorComercialMensalidade));
         });
     }
 }

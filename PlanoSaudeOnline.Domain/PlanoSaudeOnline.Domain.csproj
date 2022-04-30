@@ -22,7 +22,6 @@
     <Folder Include="Usuario\Handlers\Contracts\" />
     <Folder Include="Usuario\Handlers\Requests\" />
     <Folder Include="Usuario\Handlers\Responses\" />
-    <Folder Include="_Shared\Enumerations\" />
   </ItemGroup>
 
   <ItemGroup>

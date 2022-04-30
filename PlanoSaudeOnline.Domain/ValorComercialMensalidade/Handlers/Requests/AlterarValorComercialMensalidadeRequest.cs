@@ -8,9 +8,9 @@ public class AlterarValorComercialMensalidadeRequest
 
     public AlterarValorComercialMensalidadeRequest(
         string id,
-        string? codigoFaixaEtaria,
+        int codigoFaixaEtaria,
         string idPlanoSaude,
-        decimal? valorMensalidade,
+        decimal valorMensalidade,
         DateTime? dataAtualizacao)
     {
         Id = id;
@@ -45,11 +45,11 @@ public class AlterarValorComercialMensalidadeRequest
     /// (10)  59 (cinquenta e nove) anos ou mais.”
     /// Nota: As faixas etárias da NTRP seguem o determinado pelo Art. 2º da RN nº 63, de 22 de dezembro de 2003."
     /// </summary>
-    public string? CodigoFaixaEtaria { get; set; }
+    public int CodigoFaixaEtaria { get; set; }
 
     public string IdPlanoSaude { get; set; }
 
-    public decimal? ValorMensalidade { get; set; }
+    public decimal ValorMensalidade { get; set; }
 
     public DateTime? DataAtualizacao { get; set; }
 }

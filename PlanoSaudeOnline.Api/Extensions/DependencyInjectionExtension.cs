@@ -10,6 +10,8 @@ using PlanoSaudeOnline.Domain.PlanoSaude.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.PlanoSaude.Repositories;
 using PlanoSaudeOnline.Domain.RedeEstabelecimento.Repositories;
 using PlanoSaudeOnline.Domain.Usuario.Repositories;
+using PlanoSaudeOnline.Domain.ValorComercialMensalidade.Handlers;
+using PlanoSaudeOnline.Domain.ValorComercialMensalidade.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.ValorComercialMensalidade.Repositories;
 using PlanoSaudeOnline.Infrastructure.Repositories.MongoDB;
 using PlanoSaudeOnline.Infrastructure.Repositories.MongoDB.Base;
@@ -54,5 +56,12 @@ public static class DependencyInjectionExtension
         builder.Services.AddScoped<IExcluirPlanoSaudeHandler, ExcluirPlanoSaudeHandler>();
         builder.Services.AddScoped<IBuscarPlanoSaudePorIdHandler, BuscarPlanoSaudePorIdHandler>();
         builder.Services.AddScoped<IAtualizarTagsPlanoSaudeHandler, AtualizarTagsPlanoSaudeHandler>();
+
+        // ValorComercialMensalidade
+        builder.Services.AddScoped<IIncluirValorComercialMensalidadeHandler, IncluirValorComercialMensalidadeHandler>();
+        builder.Services.AddScoped<IConsultarValorComercialMensalidadeHandler, ConsultarValorComercialMensalidadeHandler>();
+        builder.Services.AddScoped<IAlterarValorComercialMensalidadeHandler, AlterarValorComercialMensalidadeHandler>();
+        builder.Services.AddScoped<IExcluirValorComercialMensalidadeHandler, ExcluirValorComercialMensalidadeHandler>();
+        builder.Services.AddScoped<IBuscarValorComercialMensalidadePorIdHandler, BuscarValorComercialMensalidadePorIdHandler>();
     }
 }

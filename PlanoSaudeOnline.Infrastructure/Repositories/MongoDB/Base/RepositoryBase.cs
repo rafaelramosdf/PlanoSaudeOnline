@@ -27,40 +27,47 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
 
     public virtual async Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(int page = 1, int perPage = 10)
     {
+        var currentPage = page - 1;
+        var nextPage = page;
+        var hasNextPage = false;
         perPage = perPage > 1000 ? 1000 : perPage;
 
-        var queryStatement = await EntityMongoCollection.FindAsync(_ => true, 
+        var items = (await EntityMongoCollection.FindAsync(_ => true, 
             new FindOptions<TEntity> 
             { 
-                Skip = page - 1, 
+                Skip = currentPage, 
                 Limit = perPage 
-            });
+            })).ToList();
 
-        var totalItems = await EntityMongoCollection.EstimatedDocumentCountAsync(new EstimatedDocumentCountOptions { MaxTime = TimeSpan.FromMilliseconds(1000) });
-        var items = queryStatement.ToList();
+        hasNextPage = (await EntityMongoCollection.CountDocumentsAsync(_ => true, new CountOptions { Skip = nextPage, Limit = perPage })) > 0;
 
-        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page, perPage, totalItems);
+        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page, perPage, hasNextPage);
     }
 
     public virtual async Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(Expression<Func<TEntity, bool>> query, int page = 1, int perPage = 10)
     {
+        var currentPage = page - 1;
+        var nextPage = page;
+        var hasNextPage = false;
         perPage = perPage > 1000 ? 1000 : perPage;
 
-        var queryStatement = await EntityMongoCollection.FindAsync(query, 
+        var items = (await EntityMongoCollection.FindAsync(query, 
             new FindOptions<TEntity> 
             { 
-                Skip = page - 1, 
+                Skip = currentPage, 
                 Limit = perPage 
-            });
+            })).ToList();
 
-        var totalItems = await EntityMongoCollection.CountDocumentsAsync(query, new CountOptions { MaxTime = TimeSpan.FromMilliseconds(1000) });
-        
-        var items = queryStatement.ToList();
-        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page, perPage, totalItems);
+        hasNextPage = (await EntityMongoCollection.CountDocumentsAsync(query, new CountOptions { Skip = nextPage, Limit = perPage })) > 0;
+
+        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page, perPage, hasNextPage);
     }
 
     public virtual async Task<PagedQueryResponse<IEnumerable<TEntity>>> Pesquisar(string? search, int page = 1, int perPage = 10)
     {
+        var currentPage = page - 1;
+        var nextPage = page;
+        var hasNextPage = false;
         perPage = perPage > 1000 ? 1000 : perPage;
 
         FilterDefinition<TEntity>? filter;
@@ -69,17 +76,16 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
             ? Builders<TEntity>.Filter.All(c => c.Tags, tags) 
             : Builders<TEntity>.Filter.Where(_ => true);
 
-        var queryStatement = await EntityMongoCollection.FindAsync(filter,
+        var items = (await EntityMongoCollection.FindAsync(filter,
             new FindOptions<TEntity>
             {
-                Skip = page - 1,
+                Skip = currentPage,
                 Limit = perPage
-            });
+            })).ToList();
 
-        var totalItems = await EntityMongoCollection.CountDocumentsAsync(filter);
-        var items = queryStatement.ToList();
+        hasNextPage = (await EntityMongoCollection.CountDocumentsAsync(filter, new CountOptions { Skip = nextPage, Limit = perPage })) > 0;
 
-        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page, perPage, totalItems);
+        return new PagedQueryResponse<IEnumerable<TEntity>>(items, page, perPage, hasNextPage);
     }
 
     public virtual TEntity Inserir(TEntity entity)
