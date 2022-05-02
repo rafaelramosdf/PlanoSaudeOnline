@@ -18,7 +18,7 @@ public class ConsultarValorComercialMensalidadeHandler : IConsultarValorComercia
 
     public async Task<HandlerResponse<PagedQueryResponse<IEnumerable<ValorComercialMensalidadeResponse>>>> HandleAsync(ConsultarValorComercialMensalidadeRequest request)
     {
-        var queryResult = await ValorComercialMensalidadeRepository.Pesquisar(request.Search, request.Page, request.Limit);
+        var queryResult = await ValorComercialMensalidadeRepository.Buscar(request);
 
         Console.WriteLine("Handle ConsultarValorComercialMensalidadeHandler executed!");
 

@@ -17,36 +17,6 @@ public abstract class Entity
 
     [BsonDateTimeOptions(Kind = DateTimeKind.Utc)]
     public DateTime? AlteradoEm { get; set; }
-
-    public List<string> Tags { get; private set; } = new List<string>();
-
-    protected void SetTags(List<string> tags)
-    {
-        foreach (var t in tags)
-        {
-            if (!string.IsNullOrEmpty(t))
-            {
-                Tags.AddRange(t.ToLower().Split(" ").ToList());
-            }
-        }
-    }
-
-    protected void AddTag(string? tag)
-    {
-        if (!string.IsNullOrEmpty(tag))
-            Tags.Add(tag.ToLower());
-    }
-
-    protected void AddTag(List<string> tags)
-    {
-        if (tags.Any())
-        {
-            foreach (var t in tags)
-            {
-                AddTag(t.ToLower());
-            }
-        }
-    }
 }
 
 [Serializable]

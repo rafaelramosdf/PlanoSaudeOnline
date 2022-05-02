@@ -6,7 +6,7 @@ public class IncluirOperadoraPlanoSaudeRequest
     {
     }
 
-    public IncluirOperadoraPlanoSaudeRequest(bool ativo, 
+    public IncluirOperadoraPlanoSaudeRequest(bool ativo,
         string registroAns, 
         string cnpj, 
         string razaoSocial, 
@@ -22,7 +22,6 @@ public class IncluirOperadoraPlanoSaudeRequest
         string? regiaoComercializacao, 
         DateTime? dataRegistroAns)
     {
-        Ativo = ativo;
         RegistroAns = registroAns;
         Cnpj = cnpj;
         RazaoSocial = razaoSocial;
@@ -40,7 +39,6 @@ public class IncluirOperadoraPlanoSaudeRequest
 
     public IncluirOperadoraPlanoSaudeRequest(Entities.OperadoraPlanoSaude operadoraPlanoSaudeRequest)
     {
-        Ativo = operadoraPlanoSaudeRequest.Ativo;
         RegistroAns = operadoraPlanoSaudeRequest.RegistroAns;
         Cnpj = operadoraPlanoSaudeRequest.Cnpj;
         RazaoSocial = operadoraPlanoSaudeRequest.RazaoSocial;
@@ -56,10 +54,9 @@ public class IncluirOperadoraPlanoSaudeRequest
         DataRegistroAns = operadoraPlanoSaudeRequest.DataRegistroAns;
     }
 
-    public bool Ativo { get; set; } = true;
-    public string RegistroAns { get; set; } = "";
-    public string Cnpj { get; set; } = "";
-    public string RazaoSocial { get; set; } = "";
+    public string RegistroAns { get; set; }
+    public string Cnpj { get; set; }
+    public string RazaoSocial { get; set; }
     public string NomeFantasia { get; set; }
     public string? Modalidade { get; set; }
     public string? Logradouro { get; set; }

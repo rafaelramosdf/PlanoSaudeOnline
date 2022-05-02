@@ -24,7 +24,6 @@ public class AlterarOperadoraPlanoSaudeRequest
         DateTime? dataRegistroAns)
     {
         Id = id;
-        Ativo = ativo;
         RegistroAns = registroAns;
         Cnpj = cnpj;
         RazaoSocial = razaoSocial;
@@ -43,7 +42,6 @@ public class AlterarOperadoraPlanoSaudeRequest
     public AlterarOperadoraPlanoSaudeRequest(Entities.OperadoraPlanoSaude operadoraPlanoSaude)
     {
         Id = operadoraPlanoSaude.Id;
-        Ativo = operadoraPlanoSaude.Ativo;
         RegistroAns = operadoraPlanoSaude.RegistroAns;
         Cnpj = operadoraPlanoSaude.Cnpj;
         RazaoSocial = operadoraPlanoSaude.RazaoSocial;
@@ -60,7 +58,6 @@ public class AlterarOperadoraPlanoSaudeRequest
     }
 
     public string Id { get; set; }
-    public bool Ativo { get; set; } = true;
     public string RegistroAns { get; set; }
     public string Cnpj { get; set; }
     public string RazaoSocial { get; set; }

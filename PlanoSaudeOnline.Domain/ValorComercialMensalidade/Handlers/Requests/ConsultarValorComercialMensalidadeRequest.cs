@@ -1,9 +1,9 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Requests;
+﻿using PlanoSaudeOnline.Domain._Shared.Contracts.Handlers.Requests;
 using System.Linq.Expressions;
 
 namespace PlanoSaudeOnline.Domain.ValorComercialMensalidade.Handlers.Requests;
 
-public class ConsultarValorComercialMensalidadeRequest : PagedQueryRequestBase
+public class ConsultarValorComercialMensalidadeRequest : IQueryRequest<Entities.ValorComercialMensalidade>
 {
     public ConsultarValorComercialMensalidadeRequest()
     {
@@ -17,9 +17,13 @@ public class ConsultarValorComercialMensalidadeRequest : PagedQueryRequestBase
     public string? Id { get; set; }
     public List<string> Ids { get; set; } = new List<string>();
     public string? IdPlanoSaude { get; set; }
-    public string? CodigoFaixaEtaria { get; set; }
+    public int? CodigoFaixaEtaria { get; set; }
 
-    public Expression<Func<Entities.ValorComercialMensalidade, bool>> ObterConsulta()
+    public string? Search { get; set; } = string.Empty;
+    public int Page { get; set; } = 1;
+    public int Limit { get; set; } = 10;
+
+    public Expression<Func<Entities.ValorComercialMensalidade, bool>> Query()
     {
         if (!string.IsNullOrEmpty(Id))
             return x => x.Id.Equals(Id);
@@ -27,14 +31,14 @@ public class ConsultarValorComercialMensalidadeRequest : PagedQueryRequestBase
         if (Ids != null && Ids.Any())
             return x => Ids.Contains(x.Id);
 
-        if (!string.IsNullOrEmpty(IdPlanoSaude) && !string.IsNullOrEmpty(CodigoFaixaEtaria))
-            return x => x.IdPlanoSaude.Equals(IdPlanoSaude) && x.CodigoFaixaEtaria != null && x.CodigoFaixaEtaria.Equals(CodigoFaixaEtaria);
+        if (!string.IsNullOrEmpty(IdPlanoSaude) && CodigoFaixaEtaria > 0)
+            return x => x.IdPlanoSaude.Equals(IdPlanoSaude) && x.CodigoFaixaEtaria > 0 && x.CodigoFaixaEtaria.Equals(CodigoFaixaEtaria);
 
         if (!string.IsNullOrEmpty(IdPlanoSaude))
             return x => x.IdPlanoSaude.Equals(IdPlanoSaude);
 
-        if (!string.IsNullOrEmpty(CodigoFaixaEtaria))
-            return x => x.CodigoFaixaEtaria != null && x.CodigoFaixaEtaria.Equals(CodigoFaixaEtaria);
+        if (CodigoFaixaEtaria > 0)
+            return x => x.CodigoFaixaEtaria > 0 && x.CodigoFaixaEtaria.Equals(CodigoFaixaEtaria);
 
         return x => true;
     }

@@ -1,0 +1,92 @@
+﻿@inject NavigationManager NavigationManager
+
+@page "/"
+
+<PageTitle>Plano de Saúde Online</PageTitle>
+
+<MudText Typo="Typo.h4" GutterBottom="true">Olá, seja bem vindo!</MudText>
+<MudText Typo="Typo.h6" Color="Color.Primary" Class="mb-8">Para iniciar sua cotação de plano de saúde, selecione um Estado, na lista abaixo:</MudText>
+
+<MudGrid>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Acre</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Alagoas</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Amapá</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Bahia</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Ceará</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary"
+                   OnClick='() => NavigationManager.NavigateTo("PropriedadesPlanoSaude/?uf=DF")'>
+            Distrito Federal
+        </MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Espirito Santo</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Goiás</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Maranhão</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Mato Grosso</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Mato Grosso do sul</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Minas Gerais</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Pará</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Paraíba</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Paraná</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Pernambuco</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Piauí</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Rio de Janeiro</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Rio Grande do Norte</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Rio Grande do Sul</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Rondônia</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Roraima</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Santa Catarina</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">São Paulo</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Sergipe</MudButton>
+    </MudItem>
+    <MudItem>
+        <MudButton Variant="Variant.Outlined" Color="Color.Tertiary">Tocantins</MudButton>
+    </MudItem>
+</MudGrid>

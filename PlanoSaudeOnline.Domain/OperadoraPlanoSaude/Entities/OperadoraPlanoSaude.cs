@@ -7,7 +7,6 @@ namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Entities;
 public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
 {
     public OperadoraPlanoSaude(
-        bool ativo, 
         string registroAns, 
         string cnpj, 
         string razaoSocial, 
@@ -22,7 +21,6 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         string? regiaoComercializacao, 
         DateTime? dataRegistroAns)
     {
-        Ativo = ativo;
         RegistroAns = registroAns;
         Cnpj = cnpj;
         RazaoSocial = razaoSocial;
@@ -36,12 +34,10 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         Cep = cep;
         RegiaoComercializacao = regiaoComercializacao;
         DataRegistroAns = dataRegistroAns;
-        InicializarTags();
     }
 
     public OperadoraPlanoSaude(IncluirOperadoraPlanoSaudeRequest incluirOperadoraPlanoSaudeRequest)
     {
-        Ativo = incluirOperadoraPlanoSaudeRequest.Ativo;
         RegistroAns = incluirOperadoraPlanoSaudeRequest.RegistroAns;
         Cnpj = incluirOperadoraPlanoSaudeRequest.Cnpj;
         RazaoSocial = incluirOperadoraPlanoSaudeRequest.RazaoSocial;
@@ -55,13 +51,11 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         Cep = incluirOperadoraPlanoSaudeRequest.Cep;
         RegiaoComercializacao = incluirOperadoraPlanoSaudeRequest.RegiaoComercializacao;
         DataRegistroAns = incluirOperadoraPlanoSaudeRequest.DataRegistroAns;
-        InicializarTags();
     }
 
     public OperadoraPlanoSaude(AlterarOperadoraPlanoSaudeRequest alterarOperadoraPlanoSaudeRequest)
     {
         Id = alterarOperadoraPlanoSaudeRequest.Id;
-        Ativo = alterarOperadoraPlanoSaudeRequest.Ativo;
         RegistroAns = alterarOperadoraPlanoSaudeRequest.RegistroAns;
         Cnpj = alterarOperadoraPlanoSaudeRequest.Cnpj;
         RazaoSocial = alterarOperadoraPlanoSaudeRequest.RazaoSocial;
@@ -75,10 +69,7 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
         Cep = alterarOperadoraPlanoSaudeRequest.Cep;
         RegiaoComercializacao = alterarOperadoraPlanoSaudeRequest.RegiaoComercializacao;
         DataRegistroAns = alterarOperadoraPlanoSaudeRequest.DataRegistroAns;
-        InicializarTags();
     }
-
-    public bool Ativo { get; set; }
 
     public string RegistroAns { get; set; }
 
@@ -114,25 +105,4 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
     public string? RegiaoComercializacao { get; set; }
 
     public DateTime? DataRegistroAns { get; set; }
-
-    public void InicializarTags()
-    {
-        var tags = new List<string>();
-
-        tags.Add(RegistroAns);
-        tags.Add(Cnpj);
-        tags.Add(RazaoSocial);
-        tags.Add(NomeFantasia);
-
-        if(!string.IsNullOrEmpty(Modalidade))
-            tags.Add(Modalidade);
-
-        if (!string.IsNullOrEmpty(Cidade))
-            tags.Add(Cidade);
-
-        if (!string.IsNullOrEmpty(Uf))
-            tags.Add(Uf);
-
-        SetTags(tags);
-    }
 }

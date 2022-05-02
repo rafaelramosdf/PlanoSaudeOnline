@@ -1,9 +1,9 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Requests;
+﻿using PlanoSaudeOnline.Domain._Shared.Contracts.Handlers.Requests;
 using System.Linq.Expressions;
 
 namespace PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Requests;
 
-public class ConsultarOperadoraPlanoSaudeRequest : PagedQueryRequestBase
+public class ConsultarOperadoraPlanoSaudeRequest : IQueryRequest<Entities.OperadoraPlanoSaude>
 {
     public ConsultarOperadoraPlanoSaudeRequest()
     {
@@ -21,7 +21,11 @@ public class ConsultarOperadoraPlanoSaudeRequest : PagedQueryRequestBase
     public string? RegistroAns { get; set; }
     public string? Uf { get; set; }
 
-    public Expression<Func<Entities.OperadoraPlanoSaude, bool>> ObterConsulta() 
+    public string? Search { get; set; } = string.Empty;
+    public int Page { get; set; } = 1;
+    public int Limit { get; set; } = 10;
+
+    public Expression<Func<Entities.OperadoraPlanoSaude, bool>> Query() 
     {
         if (!string.IsNullOrEmpty(Id))
             return x => x.Id.Equals(Id);

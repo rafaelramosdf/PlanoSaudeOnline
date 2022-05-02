@@ -1,0 +1,71 @@
+﻿@page "/PropriedadesPlanoSaude"
+
+<MudGrid>
+    <MudItem md="12">
+        <MudText Typo="Typo.h4">
+            Me diga, quais características o plano de saúde deve possuir?
+        </MudText>
+    </MudItem>
+</MudGrid>
+
+<br />
+<br />
+
+<MudGrid>
+    <MudItem md="12">
+        <MudText Typo="Typo.h6" Color="Color.Primary">
+            Informe quais opções de tipo de contratação deseja encontrar na cotação?
+        </MudText>
+    </MudItem>
+    <MudItem md="12">
+        <MudChipSet MultiSelection="true" Filter="true">
+            <MudChip Size="Size.Large" Text="Individual ou familiar" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Individual ou Familiar + Coletivo por Adesão" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Individual ou Familiar + Coletivo Empresarial" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Individual + Coletivo Empresarial + Coletivo por Adesão" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Coletivo por adesão" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Coletivo empresarial" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Coletivo Empresarial + Coletivo por Adesão" Variant="Variant.Text" Color="Color.Tertiary" />
+        </MudChipSet>
+    </MudItem>
+</MudGrid>
+
+<br />
+<br />
+
+<MudGrid>
+    <MudItem md="12">
+        <MudText Typo="Typo.h6" Color="Color.Primary">
+            Informe quais segmentos assistenciais deseja que o plano de saúde possua?
+        </MudText>
+    </MudItem>
+    <MudItem md="12">
+        <MudChipSet MultiSelection="true" Filter="true">
+            <MudChip Size="Size.Large" Text="Todos" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Ambulatorial" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Ambulatorial + Hospitalar com obstetrícia" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Ambulatorial + Hospitalar com obstetrícia + Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Ambulatorial + Hospitalar sem obstetrícia" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Ambulatorial + Hospitalar sem obstetrícia + Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Ambulatorial + Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Hosp c/ obstetrícia + Hosp s/ obstetrícia" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Hosp c/s  Obstetrícia + Odont" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Hospitalar com obstetrícia" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Hospitalar com obstetrícia + Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Hospitalar sem obstetrícia" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Hospitalar sem obstetrícia + Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
+            <MudChip Size="Size.Large" Text="Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
+        </MudChipSet>
+    </MudItem>
+</MudGrid>
+
+@code {
+    [Parameter]
+    [SupplyParameterFromQuery]
+    public string? uf { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine($"UF selecionada: {uf}");
+    }
+}

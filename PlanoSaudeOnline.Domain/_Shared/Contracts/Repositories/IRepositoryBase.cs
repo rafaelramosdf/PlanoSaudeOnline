@@ -1,6 +1,6 @@
 ﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Responses;
-using System.Linq.Expressions;
+using PlanoSaudeOnline.Domain._Shared.Contracts.Handlers.Requests;
 
 namespace PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
 
@@ -8,9 +8,7 @@ public interface IRepositoryBase<TEntity>
     where TEntity : Entity
 {
     TEntity Buscar(string id);
-    Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(int page = 1, int perPage = 10);
-    Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(Expression<Func<TEntity, bool>> query, int page = 1, int perPage = 10);
-    Task<PagedQueryResponse<IEnumerable<TEntity>>> Pesquisar(string? search, int page = 1, int perPage = 10);
+    Task<PagedQueryResponse<IEnumerable<TEntity>>> Buscar(IQueryRequest<TEntity> query);
     TEntity Inserir(TEntity entity);
     void Inserir(IEnumerable<TEntity> entities);
     void Alterar(string id, TEntity entity);

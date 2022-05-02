@@ -9,8 +9,8 @@ public class IncluirPlanoSaudeRequest
     public IncluirPlanoSaudeRequest(
         string idPlano,
         string nomePlano,
-        string? codigoPlano,
-        string? registroAnsOperadora,
+        string codigoPlano,
+        string registroAnsOperadora,
         string? tipoContratacao,
         string? segmentoAssistencial,
         string? possuiCoberturaObstetricia,
@@ -69,9 +69,9 @@ public class IncluirPlanoSaudeRequest
 
     public string NomePlano { get; set; }
 
-    public string? CodigoPlano { get; set; }
+    public string CodigoPlano { get; set; }
 
-    public string? RegistroAnsOperadora { get; set; }
+    public string RegistroAnsOperadora { get; set; }
 
     /// <summary>
     /// "Tipo de contratação do plano:

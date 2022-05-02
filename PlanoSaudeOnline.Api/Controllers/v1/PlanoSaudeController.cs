@@ -69,12 +69,4 @@ public class PlanoSaudeController : BaseController
     {
         return await handler.HandleAsync(id);
     }
-
-    [HttpPost("Atualizacoes/Tags")]
-    [ProducesResponseType(StatusCodes.Status201Created)]
-    public async Task<IActionResult> AtualizacoesTags(
-        [FromServices] IAtualizarTagsPlanoSaudeHandler handler)
-    {
-        return await handler.HandleAsync();
-    }
 }

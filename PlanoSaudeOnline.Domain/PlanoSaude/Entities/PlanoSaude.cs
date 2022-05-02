@@ -8,8 +8,8 @@ public class PlanoSaude : Entity
     public PlanoSaude(
         string idPlano, 
         string nomePlano, 
-        string? codigoPlano, 
-        string? registroAnsOperadora, 
+        string codigoPlano, 
+        string registroAnsOperadora, 
         string? tipoContratacao, 
         string? segmentoAssistencial, 
         string? possuiCoberturaObstetricia, 
@@ -39,7 +39,6 @@ public class PlanoSaude : Entity
         DataSituacaoPlano = dataSituacaoPlano;
         DataRegistroPlano = dataRegistroPlano;
         DataAtualizacao = dataAtualizacao;
-        InicializarTags();
     }
 
     public PlanoSaude(IncluirPlanoSaudeRequest incluirPlanoSaudeRequest)
@@ -60,7 +59,6 @@ public class PlanoSaude : Entity
         DataSituacaoPlano = incluirPlanoSaudeRequest.DataSituacaoPlano;
         DataRegistroPlano = incluirPlanoSaudeRequest.DataRegistroPlano;
         DataAtualizacao = incluirPlanoSaudeRequest.DataAtualizacao;
-        InicializarTags();
     }
 
     public PlanoSaude(AlterarPlanoSaudeRequest alterarPlanoSaudeRequest)
@@ -82,7 +80,6 @@ public class PlanoSaude : Entity
         DataSituacaoPlano = alterarPlanoSaudeRequest.DataSituacaoPlano;
         DataRegistroPlano = alterarPlanoSaudeRequest.DataRegistroPlano;
         DataAtualizacao = alterarPlanoSaudeRequest.DataAtualizacao;
-        InicializarTags();
     }
 
     /// <summary>
@@ -92,9 +89,9 @@ public class PlanoSaude : Entity
 
     public string NomePlano { get; set; }
 
-    public string? CodigoPlano { get; set; }
+    public string CodigoPlano { get; set; }
 
-    public string? RegistroAnsOperadora { get; set; }
+    public string RegistroAnsOperadora { get; set; }
 
     /// <summary>
     /// "Tipo de contratação do plano:
@@ -194,21 +191,4 @@ public class PlanoSaude : Entity
     public DateTime? DataRegistroPlano { get; set; }
 
     public DateTime? DataAtualizacao { get; set; }
-
-    private void InicializarTags()
-    {
-        AddTag(IdPlano);
-        AddTag(NomePlano.Split(" ").ToList());
-        AddTag(RegistroAnsOperadora);
-        AddTag(CodigoPlano);
-        AddTag(SegmentoAssistencial);
-        AddTag(TipoContratacao);
-        AddTag(Cobertura);
-        AddTag(PossuiCoberturaObstetricia);
-
-        if (!string.IsNullOrEmpty(PossuiCoberturaOdontologica) && PossuiCoberturaOdontologica != "0")
-            AddTag("com odontologia");
-        else
-            AddTag("sem odontologia");
-    }
 }

@@ -1,0 +1,25 @@
+﻿@inject NavigationManager navigation
+
+@inherits LayoutComponentBase
+
+<MudThemeProvider IsDarkMode="true" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="0">
+        <MudButton OnClick='() => navigation.NavigateTo("/")'>
+            <MudText>Plano de Saúde Online | Cotação</MudText>
+        </MudButton>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/rafaelramosdf/PlanoSaudeOnline" Target="_blank" />
+    </MudAppBar>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.Large" Class="my-16 pt-16">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+}

@@ -2,8 +2,8 @@
 
 public class OperadoraPlanoSaudeResponse
 {
-    public OperadoraPlanoSaudeResponse(string id, 
-        bool ativo, 
+    public OperadoraPlanoSaudeResponse(
+        string id, 
         string registroAns, 
         string cnpj, 
         string razaoSocial, 
@@ -20,7 +20,6 @@ public class OperadoraPlanoSaudeResponse
         DateTime? dataRegistroAns)
     {
         Id = id;
-        Ativo = ativo;
         RegistroAns = registroAns;
         Cnpj = cnpj;
         RazaoSocial = razaoSocial;
@@ -39,7 +38,6 @@ public class OperadoraPlanoSaudeResponse
     public OperadoraPlanoSaudeResponse(Entities.OperadoraPlanoSaude operadoraPlanoSaude)
     {
         Id = operadoraPlanoSaude.Id;
-        Ativo = operadoraPlanoSaude.Ativo;
         RegistroAns = operadoraPlanoSaude.RegistroAns;
         Cnpj = operadoraPlanoSaude.Cnpj;
         RazaoSocial = operadoraPlanoSaude.RazaoSocial;
@@ -56,7 +54,6 @@ public class OperadoraPlanoSaudeResponse
     }
 
     public string Id { get; set; }
-    public bool Ativo { get; set; }
     public string RegistroAns { get; set; }
     public string Cnpj { get; set; }
     public string RazaoSocial { get; set; }

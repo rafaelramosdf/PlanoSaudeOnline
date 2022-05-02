@@ -55,7 +55,6 @@ public static class DependencyInjectionExtension
         builder.Services.AddScoped<IAlterarPlanoSaudeHandler, AlterarPlanoSaudeHandler>();
         builder.Services.AddScoped<IExcluirPlanoSaudeHandler, ExcluirPlanoSaudeHandler>();
         builder.Services.AddScoped<IBuscarPlanoSaudePorIdHandler, BuscarPlanoSaudePorIdHandler>();
-        builder.Services.AddScoped<IAtualizarTagsPlanoSaudeHandler, AtualizarTagsPlanoSaudeHandler>();
 
         // ValorComercialMensalidade
         builder.Services.AddScoped<IIncluirValorComercialMensalidadeHandler, IncluirValorComercialMensalidadeHandler>();

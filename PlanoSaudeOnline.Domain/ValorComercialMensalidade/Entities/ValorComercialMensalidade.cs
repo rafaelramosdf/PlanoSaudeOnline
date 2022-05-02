@@ -1,5 +1,4 @@
 ﻿using PlanoSaudeOnline.Domain._Shared.Base.Entities;
-using PlanoSaudeOnline.Domain._Shared.Enumerations;
 using PlanoSaudeOnline.Domain.ValorComercialMensalidade.Handlers.Requests;
 
 namespace PlanoSaudeOnline.Domain.ValorComercialMensalidade.Entities;
@@ -16,7 +15,6 @@ public class ValorComercialMensalidade : Entity
         IdPlanoSaude = idPlanoSaude;
         ValorMensalidade = valorMensalidade;
         DataAtualizacao = dataAtualizacao;
-        InicializarTags();
     }
 
     public ValorComercialMensalidade(IncluirValorComercialMensalidadeRequest incluirValorComercialMensalidadeRequest)
@@ -25,7 +23,6 @@ public class ValorComercialMensalidade : Entity
         IdPlanoSaude = incluirValorComercialMensalidadeRequest.IdPlanoSaude;
         ValorMensalidade = incluirValorComercialMensalidadeRequest.ValorMensalidade;
         DataAtualizacao = incluirValorComercialMensalidadeRequest.DataAtualizacao;
-        InicializarTags();
     }
 
     public ValorComercialMensalidade(AlterarValorComercialMensalidadeRequest alterarValorComercialMensalidadeRequest)
@@ -35,7 +32,6 @@ public class ValorComercialMensalidade : Entity
         IdPlanoSaude = alterarValorComercialMensalidadeRequest.IdPlanoSaude;
         ValorMensalidade = alterarValorComercialMensalidadeRequest.ValorMensalidade;
         DataAtualizacao = alterarValorComercialMensalidadeRequest.DataAtualizacao;
-        InicializarTags();
     }
 
     /// <summary>
@@ -59,10 +55,4 @@ public class ValorComercialMensalidade : Entity
     public decimal ValorMensalidade { get; set; }
 
     public DateTime? DataAtualizacao { get; set; }
-
-    private void InicializarTags()
-    {
-        AddTag(IdPlanoSaude);
-        AddTag(CodigoFaixaEtaria.ToString());
-    }
 }
