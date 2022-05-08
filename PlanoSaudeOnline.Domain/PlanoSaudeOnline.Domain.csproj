@@ -7,9 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CotacaoVida\Handlers\Contracts\" />
-    <Folder Include="CotacaoVida\Handlers\Requests\" />
-    <Folder Include="CotacaoVida\Handlers\Responses\" />
     <Folder Include="Cotacao\Handlers\Contracts\" />
     <Folder Include="Cotacao\Handlers\Responses\" />
     <Folder Include="Cotacao\Handlers\Requests\" />

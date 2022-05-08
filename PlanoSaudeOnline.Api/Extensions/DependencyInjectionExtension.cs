@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
 using PlanoSaudeOnline.Domain.Cotacao.Repositories;
-using PlanoSaudeOnline.Domain.CotacaoVida.Repositories;
 using PlanoSaudeOnline.Domain.FaixaEtaria.Repositories;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers.Contracts;

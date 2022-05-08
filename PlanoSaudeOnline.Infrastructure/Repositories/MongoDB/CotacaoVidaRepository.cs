@@ -1,5 +1,5 @@
-﻿using PlanoSaudeOnline.Domain.CotacaoVida.Entities;
-using PlanoSaudeOnline.Domain.CotacaoVida.Repositories;
+﻿using PlanoSaudeOnline.Domain.Cotacao.Repositories;
+using PlanoSaudeOnline.Domain.Cotacao.Entities;
 using PlanoSaudeOnline.Infrastructure.Repositories.MongoDB.Base;
 
 namespace PlanoSaudeOnline.Infrastructure.Repositories.MongoDB;

@@ -1,10 +1,29 @@
-﻿@page "/PropriedadesPlanoSaude"
+﻿@inject NavigationManager navigation
+
+@page "/PropriedadesPlanoSaude"
+
+<MudText Typo="Typo.h5">
+    Me diga, quais características, coberturas e vidas o plano de saúde deve cobrir?
+</MudText>
+
+<br />
+<br />
 
 <MudGrid>
-    <MudItem md="12">
-        <MudText Typo="Typo.h4">
-            Me diga, quais características o plano de saúde deve possuir?
+    <MudItem md="12" sm="12">
+        <MudText Typo="Typo.subtitle1" Color="Color.Tertiary">
+            Informe o tipo de contratação (adesão):
         </MudText>
+    </MudItem>
+    <MudItem md="12" sm="12">
+        <MudSelect T="TipoContratacaoEnum" @bind-Value="Model.TipoContratacao" FullWidth="true"
+                   Label="Tipo de Contratação" Variant="Variant.Outlined" 
+                   ToStringFunc="m => m.ToDescription()" Clearable>
+            @foreach (var item in Enum.GetValues<TipoContratacaoEnum>())
+            {
+                <MudSelectItem Value="@item" />
+            }
+        </MudSelect>
     </MudItem>
 </MudGrid>
 
@@ -12,21 +31,20 @@
 <br />
 
 <MudGrid>
-    <MudItem md="12">
-        <MudText Typo="Typo.h6" Color="Color.Primary">
-            Informe quais opções de tipo de contratação deseja encontrar na cotação?
+    <MudItem md="12" sm="12">
+        <MudText Typo="Typo.subtitle1" Color="Color.Tertiary">
+            Informe o segmento assistencial (coberturas):
         </MudText>
     </MudItem>
-    <MudItem md="12">
-        <MudChipSet MultiSelection="true" Filter="true">
-            <MudChip Size="Size.Large" Text="Individual ou familiar" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Individual ou Familiar + Coletivo por Adesão" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Individual ou Familiar + Coletivo Empresarial" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Individual + Coletivo Empresarial + Coletivo por Adesão" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Coletivo por adesão" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Coletivo empresarial" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Coletivo Empresarial + Coletivo por Adesão" Variant="Variant.Text" Color="Color.Tertiary" />
-        </MudChipSet>
+    <MudItem md="12" sm="12">
+        <MudSelect T="SegmentoAssistencialEnum" @bind-Value="Model.SegmentoAssistencial" FullWidth="true"
+                   Label="Segmento Assistencial" Variant="Variant.Outlined" 
+                   ToStringFunc="m => m.ToDescription()" Clearable>
+            @foreach (var item in Enum.GetValues<SegmentoAssistencialEnum>())
+            {
+                <MudSelectItem Value="@item" />
+            }
+        </MudSelect>
     </MudItem>
 </MudGrid>
 
@@ -34,38 +52,85 @@
 <br />
 
 <MudGrid>
-    <MudItem md="12">
-        <MudText Typo="Typo.h6" Color="Color.Primary">
-            Informe quais segmentos assistenciais deseja que o plano de saúde possua?
+    <MudItem md="12" sm="12">
+        <MudText Typo="Typo.subtitle1" Color="Color.Tertiary">
+            Informe a quantidade de vidas por faixa etária:
         </MudText>
     </MudItem>
-    <MudItem md="12">
-        <MudChipSet MultiSelection="true" Filter="true">
-            <MudChip Size="Size.Large" Text="Todos" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Ambulatorial" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Ambulatorial + Hospitalar com obstetrícia" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Ambulatorial + Hospitalar com obstetrícia + Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Ambulatorial + Hospitalar sem obstetrícia" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Ambulatorial + Hospitalar sem obstetrícia + Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Ambulatorial + Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Hosp c/ obstetrícia + Hosp s/ obstetrícia" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Hosp c/s  Obstetrícia + Odont" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Hospitalar com obstetrícia" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Hospitalar com obstetrícia + Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Hospitalar sem obstetrícia" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Hospitalar sem obstetrícia + Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
-            <MudChip Size="Size.Large" Text="Odontológico" Variant="Variant.Text" Color="Color.Tertiary" />
-        </MudChipSet>
+    <MudItem md="12" sm="12">
+        <MudTable Items="@Model.Vidas" Hover="true">
+            <HeaderContent>
+                <MudTh Style="text-align: left;">Faixa Etária</MudTh>
+                <MudTh Style="text-align: center;">Quantidade</MudTh>
+                <MudTh Style="text-align: right;">Remover / Adicionar</MudTh>
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="Faixa Etária" Style="@($"font-size: 12pt; color: {Colors.DeepPurple.Accent1}")">@(context.FaixaEtaria.ToDescription())</MudTd>
+                <MudTd DataLabel="Quantidade" Style="@($"text-align: center; font-size: 16pt; color: {Colors.Teal.Accent3}")">@(context.Quantidade)</MudTd>
+                <MudTd  Style="text-align: right;">
+                    <MudIconButton Icon="@Icons.Material.Filled.Remove" 
+                    Variant="Variant.Filled" Color="Color.Default" 
+                    OnClick="() => removerCotacaoVida(ref context)" />
+
+                    <MudIconButton Icon="@Icons.Material.Filled.Add" 
+                    Variant="Variant.Filled" Color="Color.Default"
+                    OnClick="() => adicionarCotacaoVida(ref context)" />
+                </MudTd>
+            </RowTemplate>
+        </MudTable>
+    </MudItem>
+</MudGrid>
+
+<br />
+<br />
+
+<MudGrid>
+    <MudItem md="12" Style="text-align: left;">
+        <MudFab Color="Color.Default" Label="Voltar"
+                StartIcon="@Icons.Material.Filled.NavigateBefore"
+                OnClick='() => navigation.NavigateTo("/")' />
+        <MudFab Color="Color.Primary"
+                EndIcon="@Icons.Material.Filled.NavigateNext"
+                Label="Avançar" />
     </MudItem>
 </MudGrid>
 
 @code {
+    public CotacaoViewModel Model { get; set; } = new CotacaoViewModel();
+
     [Parameter]
     [SupplyParameterFromQuery]
     public string? uf { get; set; }
 
     protected override void OnInitialized()
     {
-        Console.WriteLine($"UF selecionada: {uf}");
+        Model.Uf = uf ?? "";
+        Model.TipoContratacao = TipoContratacaoEnum.IndividualOuFamiliar;
+        Model.SegmentoAssistencial = SegmentoAssistencialEnum.AmbulatorialHospitalarComObstetricia;
+
+        foreach (FaixaEtariaEnum item in Enum.GetValues(typeof(FaixaEtariaEnum)))
+        {
+            Model.Vidas.Add(new CotacaoVidaViewModel
+            {
+                FaixaEtaria = item,
+                Quantidade = 0
+            });
+        }
+    }
+
+    private List<string> listaTipoContratacao =>
+    EnumerationExtension.EnumDescriptions<TipoContratacaoEnum>().ToList();
+
+    private List<string> listaSegmentoAssistencial =>
+    EnumerationExtension.EnumDescriptions<SegmentoAssistencialEnum>().ToList();
+
+    private void adicionarCotacaoVida(ref CotacaoVidaViewModel vida)
+    {
+        vida.Quantidade++;
+    }
+
+    private void removerCotacaoVida(ref CotacaoVidaViewModel vida)
+    {
+        vida.Quantidade = vida.Quantidade == 0 ? 0 : vida.Quantidade - 1;
     }
 }
