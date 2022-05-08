@@ -99,7 +99,7 @@ public class OperadoraPlanoSaude : Entity<OperadoraPlanoSaudeValidation>
     /// • Região 2: no Estado de São Paulo ou em mais de um estado, excetuando os grupos definidos no critério da região 1;
     /// • Região 3: em um único estado, qualquer que seja ele, excetuando-se o Estado de São Paulo;
     /// • Região 4: no Município de São Paulo, do Rio de Janeiro, de Belo Horizonte, de Porto Alegre ou de Curitiba ou de Brasília;
-    /// • Região 5: em grupo de municípios, excetuando os definidos na região 4; e
+    /// • Região 5: em grupo de municípios, excetuando os definidos na região 4; 
     /// • Região 6: em um único município, excetuando os definidos na região 4."
     /// </summary>
     public string? RegiaoComercializacao { get; set; }

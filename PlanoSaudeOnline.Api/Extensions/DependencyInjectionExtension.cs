@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
+using PlanoSaudeOnline.Domain.Cotacao.Handlers;
+using PlanoSaudeOnline.Domain.Cotacao.Handlers.Contracts;
 using PlanoSaudeOnline.Domain.Cotacao.Repositories;
 using PlanoSaudeOnline.Domain.FaixaEtaria.Repositories;
 using PlanoSaudeOnline.Domain.OperadoraPlanoSaude.Handlers;
@@ -40,7 +42,10 @@ public static class DependencyInjectionExtension
         /// <summary>
         /// Handlers Injection
         /// </summary>
-        
+
+        // Cotacao
+        builder.Services.AddScoped<IRealizarCotacaoHandler, RealizarCotacaoHandler>();
+
         // OperadoraPlanoSaude
         builder.Services.AddScoped<IIncluirOperadoraPlanoSaudeHandler, IncluirOperadoraPlanoSaudeHandler>();
         builder.Services.AddScoped<IConsultarOperadoraPlanoSaudeHandler, ConsultarOperadoraPlanoSaudeHandler>();

@@ -96,7 +96,7 @@
 </MudGrid>
 
 @code {
-    public CotacaoViewModel Model { get; set; } = new CotacaoViewModel();
+    public CotacaoRequest Model { get; set; } = new CotacaoRequest();
 
     [Parameter]
     [SupplyParameterFromQuery]
@@ -110,7 +110,7 @@
 
         foreach (FaixaEtariaEnum item in Enum.GetValues(typeof(FaixaEtariaEnum)))
         {
-            Model.Vidas.Add(new CotacaoVidaViewModel
+            Model.Vidas.Add(new CotacaoVidaRequest
             {
                 FaixaEtaria = item,
                 Quantidade = 0
@@ -124,12 +124,12 @@
     private List<string> listaSegmentoAssistencial =>
     EnumerationExtension.EnumDescriptions<SegmentoAssistencialEnum>().ToList();
 
-    private void adicionarCotacaoVida(ref CotacaoVidaViewModel vida)
+    private void adicionarCotacaoVida(ref CotacaoVidaRequest vida)
     {
         vida.Quantidade++;
     }
 
-    private void removerCotacaoVida(ref CotacaoVidaViewModel vida)
+    private void removerCotacaoVida(ref CotacaoVidaRequest vida)
     {
         vida.Quantidade = vida.Quantidade == 0 ? 0 : vida.Quantidade - 1;
     }

@@ -3,6 +3,7 @@ using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Responses;
 using PlanoSaudeOnline.Domain._Shared.Contracts.Handlers.Requests;
 using PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
+using System.Linq.Expressions;
 
 namespace PlanoSaudeOnline.Infrastructure.Repositories.MongoDB.Base;
 
@@ -44,6 +45,11 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity>
         hasNextPage = (await EntityMongoCollection.CountDocumentsAsync(query, new CountOptions { Skip = nextPage, Limit = queryRequest.Limit })) > 0;
 
         return new PagedQueryResponse<IEnumerable<TEntity>>(items, queryRequest.Page, queryRequest.Limit, hasNextPage);
+    }
+
+    public virtual async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> query)
+    {
+        return (await EntityMongoCollection.FindAsync(query)).ToList();
     }
 
     public virtual TEntity Inserir(TEntity entity)
