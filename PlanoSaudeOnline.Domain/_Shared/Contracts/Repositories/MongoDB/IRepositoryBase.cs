@@ -3,7 +3,7 @@ using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Responses;
 using PlanoSaudeOnline.Domain._Shared.Contracts.Handlers.Requests;
 using System.Linq.Expressions;
 
-namespace PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
+namespace PlanoSaudeOnline.Domain._Shared.Contracts.Repositories.MongoDB;
 
 public interface IRepositoryBase<TEntity>
     where TEntity : Entity

@@ -1,4 +1,4 @@
-﻿using PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
+﻿using PlanoSaudeOnline.Domain._Shared.Contracts.Repositories.MongoDB;
 
 namespace PlanoSaudeOnline.Domain.RedeEstabelecimento.Repositories;
 

@@ -1,5 +1,5 @@
 ﻿using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Responses;
-using PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
+using PlanoSaudeOnline.Domain._Shared.Contracts.Repositories.MongoDB;
 
 namespace PlanoSaudeOnline.Domain.PlanoSaude.Repositories;
 

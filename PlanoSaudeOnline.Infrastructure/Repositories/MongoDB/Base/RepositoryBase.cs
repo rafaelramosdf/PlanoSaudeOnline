@@ -2,7 +2,7 @@
 using PlanoSaudeOnline.Domain._Shared.Base.Entities;
 using PlanoSaudeOnline.Domain._Shared.Base.Handlers.Responses;
 using PlanoSaudeOnline.Domain._Shared.Contracts.Handlers.Requests;
-using PlanoSaudeOnline.Domain._Shared.Contracts.Repositories;
+using PlanoSaudeOnline.Domain._Shared.Contracts.Repositories.MongoDB;
 using System.Linq.Expressions;
 
 namespace PlanoSaudeOnline.Infrastructure.Repositories.MongoDB.Base;

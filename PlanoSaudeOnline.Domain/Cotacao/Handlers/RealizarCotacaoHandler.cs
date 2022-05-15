@@ -66,7 +66,8 @@ public class RealizarCotacaoHandler : IRealizarCotacaoHandler
                 }
             }
 
-            response.Planos.Add(cotacaoPlano);
+            if(cotacaoPlano.ValorMensalidade > 0m)
+                response.Planos.Add(cotacaoPlano);
         }
 
         return new HandlerResponse<RealizarCotacaoResponse>(System.Net.HttpStatusCode.OK, response);
