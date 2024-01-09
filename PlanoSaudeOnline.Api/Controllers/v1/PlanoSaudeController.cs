@@ -34,7 +34,7 @@ public class PlanoSaudeController : BaseController
         [FromServices] IConsultarPlanoSaudeHandler handler)
     {
         if (query.Limit > 100)
-            return new BadRequestObjectResult("O limite de itens por página é de 1000 registros");
+            return new BadRequestObjectResult("O limite de itens por página é de 100 registros");
 
         return await handler.HandleAsync(query);
     }
