@@ -9,7 +9,12 @@ public class PlanoSaude : Entity
         string idPlano, 
         string nomePlano, 
         string codigoPlano, 
-        string registroAnsOperadora, 
+        string operadoraRegistroAns, 
+        DateTime? operadoraDataRegistroAns,
+        string operadoraModalidade,
+        string operadoraNomeFantasia,
+        string operadoraRazaoSocial,
+        string operadoraRegiaoComercializacao,
         string? tipoContratacao, 
         string? segmentoAssistencial, 
         string? possuiCoberturaObstetricia, 
@@ -26,7 +31,12 @@ public class PlanoSaude : Entity
         IdPlano = idPlano;
         NomePlano = nomePlano;
         CodigoPlano = codigoPlano;
-        RegistroAnsOperadora = registroAnsOperadora;
+        OperadoraRegistroAns = operadoraRegistroAns;
+        OperadoraDataRegistroAns = operadoraDataRegistroAns;
+        OperadoraModalidade = operadoraModalidade;
+        OperadoraNomeFantasia = operadoraNomeFantasia;
+        OperadoraRazaoSocial = operadoraRazaoSocial;
+        OperadoraRegiaoComercializacao = operadoraRegiaoComercializacao;
         TipoContratacao = tipoContratacao;
         SegmentoAssistencial = segmentoAssistencial;
         PossuiCoberturaObstetricia = possuiCoberturaObstetricia;
@@ -46,7 +56,12 @@ public class PlanoSaude : Entity
         IdPlano = incluirPlanoSaudeRequest.IdPlano;
         NomePlano = incluirPlanoSaudeRequest.NomePlano;
         CodigoPlano = incluirPlanoSaudeRequest.CodigoPlano;
-        RegistroAnsOperadora = incluirPlanoSaudeRequest.RegistroAnsOperadora;
+        OperadoraRegistroAns = incluirPlanoSaudeRequest.OperadoraRegistroAns;
+        OperadoraDataRegistroAns = incluirPlanoSaudeRequest.OperadoraDataRegistroAns;
+        OperadoraModalidade = incluirPlanoSaudeRequest.OperadoraModalidade;
+        OperadoraNomeFantasia = incluirPlanoSaudeRequest.OperadoraNomeFantasia;
+        OperadoraRazaoSocial = incluirPlanoSaudeRequest.OperadoraRazaoSocial;
+        OperadoraRegiaoComercializacao = incluirPlanoSaudeRequest.OperadoraRegiaoComercializacao;
         TipoContratacao = incluirPlanoSaudeRequest.TipoContratacao;
         SegmentoAssistencial = incluirPlanoSaudeRequest.SegmentoAssistencial;
         PossuiCoberturaObstetricia = incluirPlanoSaudeRequest.PossuiCoberturaObstetricia;
@@ -67,7 +82,12 @@ public class PlanoSaude : Entity
         IdPlano = alterarPlanoSaudeRequest.IdPlano;
         NomePlano = alterarPlanoSaudeRequest.NomePlano;
         CodigoPlano = alterarPlanoSaudeRequest.CodigoPlano;
-        RegistroAnsOperadora = alterarPlanoSaudeRequest.RegistroAnsOperadora;
+        OperadoraRegistroAns = alterarPlanoSaudeRequest.OperadoraRegistroAns;
+        OperadoraDataRegistroAns = alterarPlanoSaudeRequest.OperadoraDataRegistroAns;
+        OperadoraModalidade = alterarPlanoSaudeRequest.OperadoraModalidade;
+        OperadoraNomeFantasia = alterarPlanoSaudeRequest.OperadoraNomeFantasia;
+        OperadoraRazaoSocial = alterarPlanoSaudeRequest.OperadoraRazaoSocial;
+        OperadoraRegiaoComercializacao = alterarPlanoSaudeRequest.OperadoraRegiaoComercializacao;
         TipoContratacao = alterarPlanoSaudeRequest.TipoContratacao;
         SegmentoAssistencial = alterarPlanoSaudeRequest.SegmentoAssistencial;
         PossuiCoberturaObstetricia = alterarPlanoSaudeRequest.PossuiCoberturaObstetricia;
@@ -91,7 +111,22 @@ public class PlanoSaude : Entity
 
     public string CodigoPlano { get; set; }
 
-    public string RegistroAnsOperadora { get; set; }
+    public string OperadoraRegistroAns { get; set; }
+    public DateTime? OperadoraDataRegistroAns { get; set; }
+    public string OperadoraRazaoSocial { get; set; }
+    public string OperadoraNomeFantasia { get; set; }
+    public string OperadoraModalidade { get; set; }
+
+    /// <summary>
+    /// "Área onde a operadora de plano privado de assistência à saúde comercializa ou disponibiliza seu plano de saúde, nos termos do Anexo I da Resolução Normativa nº 209/2009, da ANS.
+    /// • Região 1: em todo o território nacional ou em grupos de pelo menos três estados dentre os seguintes: São Paulo, Rio de Janeiro, Minas Gerais, Rio Grande do Sul, Paraná e Bahia;
+    /// • Região 2: no Estado de São Paulo ou em mais de um estado, excetuando os grupos definidos no critério da região 1;
+    /// • Região 3: em um único estado, qualquer que seja ele, excetuando-se o Estado de São Paulo;
+    /// • Região 4: no Município de São Paulo, do Rio de Janeiro, de Belo Horizonte, de Porto Alegre ou de Curitiba ou de Brasília;
+    /// • Região 5: em grupo de municípios, excetuando os definidos na região 4; 
+    /// • Região 6: em um único município, excetuando os definidos na região 4."
+    /// </summary>
+    public string OperadoraRegiaoComercializacao { get; set; }
 
     /// <summary>
     /// "Tipo de contratação do plano:
